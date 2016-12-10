@@ -7,10 +7,9 @@ import (
 	"net/http"
 	"net/url"
 	"os"
-	"strings"
-)
 
-var userAgentTemplate = "Linguee API proxy at %s (https://github.com/imankulov/linguee-api)"
+	"github.com/imankulov/linguee-api/translator"
+)
 
 func redirect(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "https://github.com/imankulov/linguee-api", http.StatusFound)
@@ -19,99 +18,35 @@ func redirect(w http.ResponseWriter, r *http.Request) {
 func api(w http.ResponseWriter, r *http.Request) {
 	queryString := r.URL.Query()
 	q := queryString.Get("q")
+	srcLang := queryString.Get("src")
+	dstLang := queryString.Get("dst")
 
-	srcLang := validateLang(queryString.Get("src"))
-	dstLang := validateLang(queryString.Get("dst"))
+	tr := translator.Translator{ServiceName: r.Header.Get("Host")}
 
-	if srcLang == nil || dstLang == nil || q == "" {
-		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
-		return
-	}
-
-	lingueeURL := fmt.Sprintf("http://www.linguee.com/%s-%s/search?query=%s&ajax=1&source=%s",
-		srcLang.name,
-		dstLang.name,
-		url.QueryEscape(q),
-		srcLang.code,
-	)
-	userAgent := fmt.Sprintf(userAgentTemplate, r.Header.Get("Host"))
-	log.Print("Send request:", lingueeURL)
-
-	reader, err := downloadURL(userAgent, lingueeURL)
+	obj, err := tr.Translate(q, srcLang, dstLang, false)
 	if err != nil {
-		http.Error(w, http.StatusText(http.StatusInternalServerError),
-			http.StatusInternalServerError)
-		return
-	}
-
-	obj, err := Parse(reader)
-	if err != nil {
-		notFound, ok := err.(*NotFoundError)
-		if ok {
-			if notFound.Correction == "" {
-				log.Print("Parser error. Return 404:", err)
-				http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
-				return
+		lingueeError, ok := err.(*translator.LingueeError)
+		if !ok {
+			lingueeError = &translator.LingueeError{
+				Message:    http.StatusText(http.StatusInternalServerError),
+				StatusCode: http.StatusInternalServerError,
 			}
-			log.Print("Parser error. Return redirect:", err)
-			redirect := fmt.Sprintf(`/?q=%s`, url.QueryEscape(notFound.Correction))
+		}
+
+		// special case for correction
+		if lingueeError.Correction != nil {
+			redirect := fmt.Sprintf(`/api?q=%s&src=%s&dst=%s`, url.QueryEscape(*lingueeError.Correction), srcLang, dstLang)
 			http.Redirect(w, r, redirect, http.StatusFound)
 			return
 		}
 
-		log.Print("Parser error. Return 500:", err)
-		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+		// Just return HTTP error
+		log.Printf("Linguee error #%v\n", lingueeError)
+		WriteJSON(w, lingueeError, lingueeError.StatusCode)
 		return
 	}
 
-	js, err := json.MarshalIndent(obj, "", "  ")
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	w.Write(js)
-}
-
-type langPair struct {
-	name string
-	code string
-}
-
-func validateLang(langCode string) *langPair {
-	validCodes := map[string]string{
-		"BG": "bulgarian",
-		"CS": "czech",
-		"DA": "danish",
-		"DE": "german",
-		"EL": "greek",
-		"EN": "english",
-		"ES": "spanish",
-		"ET": "estonian",
-		"FI": "finnish",
-		"FR": "french",
-		"HU": "hungarian",
-		"IT": "italian",
-		"JA": "japanese",
-		"LT": "lithuanian",
-		"LV": "latvian",
-		"MT": "maltese",
-		"NL": "dutch",
-		"PL": "polish",
-		"PT": "portuguese",
-		"RO": "romanian",
-		"RU": "russian",
-		"SK": "slovak",
-		"SL": "slovene",
-		"SV": "swedish",
-		"ZH": "chinese",
-	}
-	normalizedCode := strings.ToUpper(langCode)
-	langName := validCodes[normalizedCode]
-	if langName == "" {
-		return nil
-	}
-	return &langPair{name: langName, code: normalizedCode}
+	WriteJSON(w, obj, http.StatusOK)
 }
 
 func main() {
@@ -123,4 +58,24 @@ func main() {
 	}
 	http.ListenAndServe(fmt.Sprintf(":%s", port), nil)
 
+}
+
+// WriteJSON writes object representation in JSON to HTTP.
+func WriteJSON(w http.ResponseWriter, obj interface{}, status int) {
+	buffer, err := json.MarshalIndent(obj, "", "    ")
+	if err != nil {
+		log.Println("Internal server error while converting object to json: ", obj)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	SetCORSHeaders(w)
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(status)
+	w.Write(buffer)
+}
+
+// SetCORSHeaders sets CORS headers
+func SetCORSHeaders(w http.ResponseWriter) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Max-Age", "86400")
 }

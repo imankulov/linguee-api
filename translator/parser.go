@@ -1,9 +1,10 @@
-package main
+package translator
 
 import (
 	"bytes"
 	"errors"
 	"io"
+	"net/http"
 	"strconv"
 	"strings"
 
@@ -72,17 +73,6 @@ type RealExample struct {
 	URL string `json:"url"` // e.g "http://www.findmadeleine.com/pt/updates@page=2.html"
 }
 
-// NotFoundError is an error which can be returned by "Parse" if message is
-// not found
-type NotFoundError struct {
-	Message    string `json:"message"`
-	Correction string `json:"correction"`
-}
-
-func (e *NotFoundError) Error() string {
-	return e.Message
-}
-
 // Parse returns API response from source HTML (provided as a byte array)
 func Parse(src *io.Reader) (*APIResponse, error) {
 	resp := APIResponse{}
@@ -96,7 +86,15 @@ func Parse(src *io.Reader) (*APIResponse, error) {
 	// check if it's a "not found" response
 	if xmlpath.MustCompile(`//h1[@class="noresults wide_in_main"]`).Exists(xmlroot) {
 		correction := extractValue(xmlroot, `//span[@class="corrected"]`)
-		return nil, &NotFoundError{Message: "Term not found", Correction: correction}
+		if correction != "" {
+			return nil, &LingueeError{
+				Message:    "Another term found",
+				StatusCode: http.StatusFound,
+				Correction: &correction,
+			}
+		} else {
+			return nil, &LingueeError{Message: "Term not found", StatusCode: http.StatusNotFound}
+		}
 	}
 
 	dataDiv, err := getByID(xmlroot, "data")

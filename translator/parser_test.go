@@ -1,7 +1,8 @@
-package main
+package translator
 
 import (
 	"io"
+	"net/http"
 	"os"
 	"testing"
 
@@ -14,9 +15,9 @@ func TestNotFound(t *testing.T) {
 	resp, parseErr := Parse(readFile("examples/xxxzzz.html"))
 	assert.Nil(resp)
 	assert.NotNil(parseErr)
-	typedError, ok := parseErr.(*NotFoundError)
+	typedError, ok := parseErr.(*LingueeError)
 	assert.True(ok)
-	assert.Equal(typedError.Correction, "")
+	assert.Equal(typedError.StatusCode, http.StatusNotFound)
 }
 
 func TestNotFoundWithCorrection(t *testing.T) {
@@ -24,10 +25,10 @@ func TestNotFoundWithCorrection(t *testing.T) {
 	resp, parseErr := Parse(readFile("examples/constibado.html"))
 	assert.Nil(resp)
 	assert.NotNil(parseErr)
-	typedError, ok := parseErr.(*NotFoundError)
+	typedError, ok := parseErr.(*LingueeError)
 	assert.True(ok)
-	assert.Equal(typedError.Correction, "constipado")
-
+	assert.Equal(typedError.StatusCode, http.StatusFound)
+	assert.Equal(*typedError.Correction, "constipado")
 }
 
 func TestObrigado(t *testing.T) {
