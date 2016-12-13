@@ -103,6 +103,23 @@ func TestTwoWordSentence(t *testing.T) {
 	assert.Equal(tr.Text, "nada mal")
 }
 
+func TestMultipleTranslations(t *testing.T) {
+	assert := assert.New(t)
+	resp, err := Parse(readFile("examples/esgotar.html"))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	assert.Equal(resp.SrcLang, "pt")
+	assert.Equal(resp.DstLang, "en")
+
+	match := resp.ExactMatches[0]
+	assert.Equal(match.Text, "esgotar")
+
+	tr := match.Translations[0]
+	assert.Equal(tr.Text, "exhaust (sth.)")
+}
+
 func readFile(filename string) *io.Reader {
 	var html io.Reader
 	fd, err := os.Open(filename)

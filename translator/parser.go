@@ -157,7 +157,7 @@ func lemmaFromNode(node *xmlpath.Node) (Lemma, error) {
 	obj.WordType = extractValue(node, `.//span[@class="tag_wordtype"]`)
 
 	// TODO: invalid value for verb tirar (lemma #1)
-	textChunks := extractValues(node, `.//a[@class="dictLink"]`)
+	textChunks := extractValues(node, `.//span[@class="tag_lemma"]/a[@class="dictLink"]`)
 	obj.Text = strings.Join(textChunks, " ")
 
 	audioLinksText := extractValue(node, `.//a[@class="audio"]/@onclick`)
