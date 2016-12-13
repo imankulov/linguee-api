@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"errors"
 	"io"
+	"log"
 	"net/http"
 	"strconv"
 	"strings"
@@ -92,17 +93,16 @@ func Parse(src *io.Reader) (*APIResponse, error) {
 				StatusCode: http.StatusFound,
 				Correction: &correction,
 			}
-		} else {
-			return nil, &LingueeError{Message: "Term not found", StatusCode: http.StatusNotFound}
 		}
+		return nil, &LingueeError{Message: "Term not found", StatusCode: http.StatusNotFound}
 	}
 
 	dataDiv, err := getByID(xmlroot, "data")
 	if err != nil {
 		return nil, errors.New(`<div id="data"> not found`)
 	}
-	resp.SrcLang = strings.ToLower(extractValue(dataDiv, `@data-lang1`))
-	resp.DstLang = strings.ToLower(extractValue(dataDiv, `@data-lang2`))
+	resp.SrcLang = strings.ToLower(extractValue(dataDiv, `@data-sourcelang`))
+	resp.DstLang = strings.ToLower(extractValue(dataDiv, `@data-targetlang`))
 	resp.Query = extractValue(dataDiv, `@data-query`)
 	resp.CorrectQuery = extractValue(dataDiv, `@data-correctspellingofquery`)
 
@@ -129,6 +129,7 @@ func Parse(src *io.Reader) (*APIResponse, error) {
 func xmlDocument(src *io.Reader) (*xmlpath.Node, error) {
 	root, err := html.Parse(*src)
 	if err != nil {
+		log.Println("Unable to parse HTML document: ", err)
 		return nil, err
 	}
 
@@ -156,7 +157,8 @@ func lemmaFromNode(node *xmlpath.Node) (Lemma, error) {
 	obj.WordType = extractValue(node, `.//span[@class="tag_wordtype"]`)
 
 	// TODO: invalid value for verb tirar (lemma #1)
-	obj.Text = extractValue(node, `..//a[@class="dictLink"]`)
+	textChunks := extractValues(node, `.//a[@class="dictLink"]`)
+	obj.Text = strings.Join(textChunks, " ")
 
 	audioLinksText := extractValue(node, `.//a[@class="audio"]/@onclick`)
 	obj.AudioLinks = extractAudioLinks(audioLinksText)

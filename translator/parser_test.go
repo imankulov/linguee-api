@@ -2,6 +2,7 @@ package translator
 
 import (
 	"io"
+	"log"
 	"net/http"
 	"os"
 	"testing"
@@ -83,9 +84,31 @@ func TestObrigado(t *testing.T) {
 	assert.Equal(ex0.URL, "http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+CRE+20011113+ITEMS+DOC+XML+V0//PT&amp;language=PT")
 }
 
+func TestTwoWordSentence(t *testing.T) {
+	assert := assert.New(t)
+	resp, err := Parse(readFile("examples/not_bad.html"))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	assert.Equal(resp.SrcLang, "en")
+	assert.Equal(resp.DstLang, "pt")
+	assert.Equal(resp.Query, "not bad")
+	assert.Equal(resp.CorrectQuery, "not bad")
+
+	match := resp.ExactMatches[0]
+	assert.Equal(match.Text, "not bad")
+
+	tr := match.Translations[0]
+	assert.Equal(tr.Text, "nada mal")
+}
+
 func readFile(filename string) *io.Reader {
 	var html io.Reader
-	fd, _ := os.Open(filename)
+	fd, err := os.Open(filename)
+	if err != nil {
+		log.Fatal("Unable to read file ", filename, err)
+	}
 	html = fd
 	return &html
 }

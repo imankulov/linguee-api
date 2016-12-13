@@ -56,6 +56,14 @@ func extractValue(node *xmlpath.Node, path string) string {
 	return ""
 }
 
+func extractValues(node *xmlpath.Node, path string) []string {
+	ret := make([]string, 0, 0)
+	for it := xmlpath.MustCompile(path).Iter(node); it.Next(); {
+		ret = append(ret, it.Node().String())
+	}
+	return ret
+}
+
 func extractNodeContentUntil(node *xmlpath.Node, path string, stopPath string) string {
 	var buffer bytes.Buffer
 	compiledStopPath := xmlpath.MustCompile(stopPath)

@@ -1,6 +1,6 @@
 package translator
 
-// Generic Linguee error which implements error interface
+// LingueeError is a Linguee error which implements error interface
 type LingueeError struct {
 	Message    string  `json:"message"`
 	StatusCode int     `json:"status_code"`
