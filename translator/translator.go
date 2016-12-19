@@ -46,7 +46,7 @@ type Translator struct {
 }
 
 // Translate returns translation for text from srclang to dstLang
-func (t *Translator) Translate(q, srcLang, dstLang string, processCorrection bool) (*APIResponse, error) {
+func (t *Translator) Translate(q, srcLang, dstLang string, guessDirection bool, processCorrection bool) (*APIResponse, error) {
 	if q == "" {
 		return nil, &LingueeError{Message: "empty query", StatusCode: http.StatusBadRequest}
 	}
@@ -60,12 +60,16 @@ func (t *Translator) Translate(q, srcLang, dstLang string, processCorrection boo
 		return nil, err
 	}
 
-	lingueeURL := fmt.Sprintf("http://www.linguee.com/%s-%s/search?query=%s&ajax=1&source=%s",
+	lingueeURL := fmt.Sprintf("http://www.linguee.com/%s-%s/search?query=%s&ajax=1",
 		srcLangPair.name,
 		dstLangPair.name,
 		url.QueryEscape(q),
-		srcLangPair.code,
 	)
+
+	if !guessDirection {
+		lingueeURL = fmt.Sprintf("%s&source=%s", lingueeURL, srcLangPair.code)
+	}
+
 	userAgent := fmt.Sprintf(userAgentTemplate, t.ServiceName)
 	log.Println("Send request:", lingueeURL)
 
@@ -78,7 +82,7 @@ func (t *Translator) Translate(q, srcLang, dstLang string, processCorrection boo
 	if err != nil && processCorrection {
 		lingueeErr, ok := err.(*LingueeError)
 		if ok && lingueeErr.Correction != nil {
-			return t.Translate(*lingueeErr.Correction, srcLang, dstLang, false)
+			return t.Translate(*lingueeErr.Correction, srcLang, dstLang, guessDirection, false)
 		}
 	}
 	return obj, err

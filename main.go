@@ -23,7 +23,7 @@ func api(w http.ResponseWriter, r *http.Request) {
 
 	tr := translator.Translator{ServiceName: r.Header.Get("Host")}
 
-	obj, err := tr.Translate(q, srcLang, dstLang, false)
+	obj, err := tr.Translate(q, srcLang, dstLang, false, false)
 	if err != nil {
 		lingueeError, ok := err.(*translator.LingueeError)
 		if !ok {
