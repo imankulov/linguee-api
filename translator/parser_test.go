@@ -55,7 +55,8 @@ func TestObrigado(t *testing.T) {
 	assert.Equal(match0.Text, "obrigado")
 	assert.Equal(match0.Wt, 1000)
 	assert.Equal(match0.LemmaID, "PT:obrigado49462")
-	assert.Equal(match0.WordType, "interjection")
+	assert.Equal(match0.WordType.POS, "interjection")
+	assert.Equal(match0.WordType.Gender, "")
 	assert.Len(match0.AudioLinks, 2)
 
 	assert.Equal(match0.AudioLinks[0].Lang, "Brazilian Portuguese")
@@ -63,7 +64,9 @@ func TestObrigado(t *testing.T) {
 
 	assert.Len(match1.Forms, 3)
 	assert.Equal(match1.Forms[0].Text, "obrigada")
-	assert.Equal(match1.Forms[0].FormType, "f sl")
+	assert.Equal(match1.Forms[0].FormType.POS, "noun")
+	assert.Equal(match1.Forms[0].FormType.Gender, "feminine")
+	assert.Equal(match1.Forms[0].FormType.Plural, false)
 
 	assert.Len(match0.Translations, 1)
 
@@ -72,7 +75,7 @@ func TestObrigado(t *testing.T) {
 	assert.Equal(tr.Bid, "10001019966")
 	assert.Equal(tr.LemmaID, "EN:thank#you26529")
 	assert.Equal(tr.Text, "thank you")
-	assert.Equal(tr.WordType, "interj")
+	assert.Equal(tr.WordType.POS, "interjection")
 
 	assert.Equal(tr.Examples[0].Source, "Obrigado por sua participação em nossa pesquisa.")
 	assert.Equal(tr.Examples[0].Target, "Thank you for your participation in our survey.")

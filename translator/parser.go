@@ -26,20 +26,20 @@ type APIResponse struct {
 
 // Lemma contains information about one found word (lemma)
 type Lemma struct {
-	Featured     bool          `json:"featured"`
-	Wt           int           `json:"wt"`        // e.g 1000 or 386
-	LemmaID      string        `json:"lemma_id"`  // e.g "PT:obrigado49462"
-	Text         string        `json:"text"`      // e.g. "obrigado"
-	WordType     string        `json:"word_type"` // e.g "adjective / past participle, masculine"
-	AudioLinks   []AudioLink   `json:"audio_links"`
-	Forms        []LemmaForm   `json:"forms"`
-	Translations []Translation `json:"translations"`
+	Featured     bool           `json:"featured"`
+	Wt           int            `json:"wt"`        // e.g 1000 or 386
+	LemmaID      string         `json:"lemma_id"`  // e.g "PT:obrigado49462"
+	Text         string         `json:"text"`      // e.g. "obrigado"
+	WordType     wordProperties `json:"word_type"` // e.g "adjective / past participle, masculine"
+	AudioLinks   []AudioLink    `json:"audio_links"`
+	Forms        []LemmaForm    `json:"forms"`
+	Translations []Translation  `json:"translations"`
 }
 
 // LemmaForm contains variants of the lemma (how it would be in plural, feminine, etc)
 type LemmaForm struct {
-	Text     string `json:"text"`      // e.g "obrigada"
-	FormType string `json:"form_type"` // e.g "f sl"
+	Text     string         `json:"text"`      // e.g "obrigada"
+	FormType wordProperties `json:"form_type"` // e.g "f sl"
 }
 
 // AudioLink contains the link to the audio file along with the language variant
@@ -54,7 +54,7 @@ type Translation struct {
 	Text       string               `json:"text"`      // e.g "required"
 	Bid        string               `json:"bid"`       // e.g. "10003211476"
 	LemmaID    string               `json:"lemma_id"`  // e.g "EN:required5162"
-	WordType   string               `json:"word_type"` // e.g "adjective"
+	WordType   wordProperties       `json:"word_type"` // e.g "adjective"
 	AudioLinks []AudioLink          `json:"audio_link"`
 	Examples   []TranslationExample `json:"examples"`
 }
@@ -154,7 +154,7 @@ func lemmaFromNode(node *xmlpath.Node) (Lemma, error) {
 	obj.Wt, _ = strconv.Atoi(wt)
 
 	obj.LemmaID = extractValue(node, `div/h2/@lid`)
-	obj.WordType = extractValue(node, `.//span[@class="tag_wordtype"]`)
+	obj.WordType = parseLongProperties(extractValue(node, `.//span[@class="tag_wordtype"]`))
 
 	// TODO: invalid value for verb tirar (lemma #1)
 	textChunks := extractValues(node, `.//span[@class="tag_lemma"]/a[@class="dictLink"]`)
@@ -195,8 +195,8 @@ func extractLemmaForms(node *xmlpath.Node) []LemmaForm {
 		form := LemmaForm{}
 
 		form.Text = extractValue(formNode, `a[@class="formLink"]`)
-		form.FormType = extractValue(formNode, `span[@class="tag_type"]`)
-		if form.Text != "" && form.FormType != "" {
+		form.FormType = parseShortProperties(extractValue(formNode, `span[@class="tag_type"]`))
+		if form.Text != "" && !form.FormType.empty() {
 			forms = append(forms, form)
 		}
 	}
@@ -217,7 +217,7 @@ func extractTranslations(node *xmlpath.Node) []Translation {
 		obj.Text = extractValue(translationNode, `.//span[@class="tag_trans"]/a[1]`)
 		obj.Bid = extractValue(translationNode, `.//span[@class="tag_trans"]/@bid`)
 		obj.LemmaID = extractValue(translationNode, `.//span[@class="tag_trans"]/@lid`)
-		obj.WordType = extractValue(translationNode, `.//span[@class="tag_trans"]/span[@class="tag_type"]`)
+		obj.WordType = parseShortProperties(extractValue(translationNode, `.//span[@class="tag_trans"]/span[@class="tag_type"]`))
 
 		audioLinksText := extractValue(translationNode, `.//a[@class="audio"]/@onclick`)
 		obj.AudioLinks = extractAudioLinks(audioLinksText)
