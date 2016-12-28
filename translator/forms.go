@@ -1,6 +1,9 @@
 package translator
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 var posFullNames = map[string]string{
 	"noun":                        "noun",
@@ -43,10 +46,28 @@ var posShortNames = map[string]string{
 	"art":    "article",
 }
 
+var revPostShortNames = map[string]string{
+	"noun":         "n",
+	"verb":         "v",
+	"adjective":    "adj",
+	"adverb":       "adv",
+	"pronoun":      "pron",
+	"preposition":  "prep",
+	"conjunction":  "conj",
+	"interjection": "interj",
+	"article":      "art",
+}
+
 var genderShortNames = map[string]string{
 	"m":  "masculine",
 	"f":  "feminine",
 	"nt": "neuter",
+}
+
+var revGenderShortNames = map[string]string{
+	"masculine": "m",
+	"feminine":  "f",
+	"neuter":    "nt",
 }
 
 var pluralShortNames = map[string]bool{
@@ -64,6 +85,35 @@ type wordProperties struct {
 
 func (wp wordProperties) empty() bool {
 	return wp.POS == "" && wp.Gender == ""
+}
+
+// Full returns full string representation of properties
+func (wp wordProperties) Full() string {
+	var chunks = make([]string, 0, 3)
+	if wp.POS != "" {
+		chunks = append(chunks, wp.POS)
+	}
+	if wp.Gender != "" {
+		chunks = append(chunks, wp.Gender)
+	}
+	if wp.Plural {
+		chunks = append(chunks, "plural")
+	}
+	return strings.Join(chunks, ", ")
+}
+
+// Abbrev returns abbreviated string representation of properties
+func (wp wordProperties) Abbrev() string {
+	var s string
+	if wp.Gender != "" {
+		s = revGenderShortNames[wp.Gender]
+	} else {
+		s = revPostShortNames[wp.POS]
+	}
+	if wp.Plural {
+		s = fmt.Sprintf("%s pl", s)
+	}
+	return strings.TrimSpace(s)
 }
 
 // parseLongProperties parses the "long variant" of part of speech + gender description
