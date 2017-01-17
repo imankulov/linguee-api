@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+
+	"github.com/imankulov/linguee-api/cache"
 )
 
 // User-Agent string, where %s is replaced with the service name
@@ -43,6 +45,7 @@ var validCodes = map[string]string{
 // Translator is the main API endpoint
 type Translator struct {
 	ServiceName string
+	Cache       cache.Cache
 }
 
 // Translate returns translation for text from srclang to dstLang
@@ -73,12 +76,13 @@ func (t *Translator) Translate(q, srcLang, dstLang string, guessDirection bool, 
 	userAgent := fmt.Sprintf(userAgentTemplate, t.ServiceName)
 	log.Println("Send request:", lingueeURL)
 
-	reader, err := downloadURL(userAgent, lingueeURL)
+	reader, err := downloadURL(t.Cache, userAgent, lingueeURL)
 	if err != nil {
+		log.Printf("ERROR: %s", err)
 		return nil, err
 	}
 
-	obj, err := Parse(reader)
+	obj, err := Parse(&reader)
 	if err != nil && processCorrection {
 		lingueeErr, ok := err.(*LingueeError)
 		if ok && lingueeErr.Correction != nil {

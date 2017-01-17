@@ -8,8 +8,11 @@ import (
 	"net/url"
 	"os"
 
+	"github.com/imankulov/linguee-api/cache"
 	"github.com/imankulov/linguee-api/translator"
 )
+
+var c cache.Cache
 
 func redirect(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "https://github.com/imankulov/linguee-api", http.StatusFound)
@@ -21,7 +24,14 @@ func api(w http.ResponseWriter, r *http.Request) {
 	srcLang := queryString.Get("src")
 	dstLang := queryString.Get("dst")
 
-	tr := translator.Translator{ServiceName: r.Header.Get("Host")}
+	if c == nil {
+		c = cache.NewMemoryCache()
+	}
+
+	tr := translator.Translator{
+		ServiceName: r.Header.Get("Host"),
+		Cache:       c,
+	}
 
 	obj, err := tr.Translate(q, srcLang, dstLang, false, false)
 	if err != nil {
