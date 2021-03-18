@@ -16,9 +16,9 @@ import (
 // servers and to speed up the API.
 type Cache interface {
 	// Set used to save in the cache the status code and the content of the URL
-	Set(URL string, statusCode int, content []byte) error
+	Set(url string, statusCode int, content []byte) error
 	// Get used to get back data from the cache
-	Get(URL string) (int, []byte, error)
+	Get(url string) (int, []byte, error)
 	// Clear removes all records from the cache
 	Clear() error
 }
@@ -40,7 +40,7 @@ func NewMemoryCache() Cache {
 }
 
 // Set used to save in the cache the status code and the content of the URL
-func (c MemoryCache) Set(URL string, statusCode int, content []byte) error {
+func (c MemoryCache) Set(url string, statusCode int, content []byte) error {
 	// compress the content to "compressed" buffer
 	var compressed bytes.Buffer
 	w := zlib.NewWriter(&compressed)
@@ -52,15 +52,15 @@ func (c MemoryCache) Set(URL string, statusCode int, content []byte) error {
 	if err != nil {
 		return err
 	}
-	c[URL] = memoryCacheItem{statusCode: statusCode, compressedContent: compressed.Bytes()}
+	c[url] = memoryCacheItem{statusCode: statusCode, compressedContent: compressed.Bytes()}
 	return nil
 }
 
 // Get used to get back data from the cache
-func (c MemoryCache) Get(URL string) (statusCode int, content []byte, err error) {
-	item, ok := c[URL]
+func (c MemoryCache) Get(url string) (statusCode int, content []byte, err error) {
+	item, ok := c[url]
 	if !ok {
-		err = errors.New("URL not in cache")
+		err = errors.New("url not in cache")
 		return
 	}
 	statusCode = item.statusCode
@@ -93,7 +93,7 @@ type DBCache struct {
 }
 
 // Set used to save in the cache the status code and the content of the URL
-func (c DBCache) Set(URL string, statusCode int, content []byte) error {
+func (c DBCache) Set(url string, statusCode int, content []byte) error {
 	// compress the content to "compressed" buffer
 	var compressed bytes.Buffer
 	w := zlib.NewWriter(&compressed)
@@ -113,14 +113,14 @@ func (c DBCache) Set(URL string, statusCode int, content []byte) error {
     VALUES ($1, $2, $3, $4)
     ON CONFLICT(id) DO UPDATE SET status_code = $3, content = $4`, c.getTable())
 
-	_, err = c.Database.Exec(q, hash(URL), URL, statusCode, compressed.Bytes())
+	_, err = c.Database.Exec(q, hash(url), url, statusCode, compressed.Bytes())
 	return err
 }
 
 // Get is used to get back data from the cache
-func (c DBCache) Get(URL string) (statusCode int, content []byte, err error) {
+func (c DBCache) Get(url string) (statusCode int, content []byte, err error) {
 	q := fmt.Sprintf(`SELECT status_code, content FROM "%s" WHERE id = $1`, c.getTable())
-	row := c.Database.QueryRow(q, hash(URL))
+	row := c.Database.QueryRow(q, hash(url))
 
 	var compressedContent []byte
 	err = row.Scan(&statusCode, &compressedContent)
