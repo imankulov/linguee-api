@@ -16,6 +16,9 @@ include = [
 
 [tool.poetry.dependencies]
 python = "^3.9"
+fastapi = "^0.63.0"
+pydantic = "^1.8.1"
+xextract = "^0.1.8"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.1.2"
@@ -25,10 +28,10 @@ flake8 = "^3.8.4"
 coverage = "^5.4"
 import-linter = "^1.2.1"
 
+[tool.coverage.run]
+source = ["tests", "linguee_api"]
 [build-system]
 requires = ["poetry>=1.0.5"]
 build-backend = "poetry.masonry.api"
 
 
-[tool.coverage.run]
-source = ["tests", "linguee_api"]
