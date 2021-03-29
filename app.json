@@ -1,0 +1,6 @@
+{
+  "name": "Linguee API",
+  "description": "Linguee proxy to convert HTML responses from linguee.com to JSON format",
+  "website": "https://github.com/imankulov/linguee-api",
+  "keywords": ["api", "translation"]
+}
