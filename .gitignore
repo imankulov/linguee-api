@@ -1,29 +1,8 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Distribution / packaging
-build/
-dist/
-*.egg-info/
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-coverage.xml
-.pytest_cache/
-cover/
-
-# Environments
+.vscode
+.mypy_cache
+.pytest_cache
 .env
-env/
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
+dist

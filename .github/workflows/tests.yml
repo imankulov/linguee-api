@@ -1,0 +1,36 @@
+name: tests
+
+on: [push]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: "3.9"
+      - name: Install dependencies
+        run: |
+          set -ex
+          curl -O -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py
+          python get-poetry.py --yes
+          rm -f get-poetry.py
+          $HOME/.poetry/bin/poetry install
+      - name: Test with pytest
+        run: |
+          set -ex
+          $HOME/.poetry/bin/poetry run coverage run -m pytest
+
+      - name: Convert coverage to XML
+        run: |
+          set -ex
+          $HOME/.poetry/bin/poetry run coverage xml
+      - name: Upload coverage to codecov
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        run: |
+          bash <(curl -s https://codecov.io/bash)
