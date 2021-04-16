@@ -1,86 +1,109 @@
 """Data classed that define the schema of the API response."""
-from typing import Optional
+from typing import Optional, Union
 
 from pydantic import BaseModel, Field
-
-
-class WordProperties(BaseModel):
-    pos: str = Field(example="noun")
-    gender: Optional[str] = Field(example="feminine")
-
-
-class LemmaForm(BaseModel):
-    """Variant of the lemma (how it would be in plural, feminine, etc)."""
-
-    text: str = Field(example="obrigada")
-    form_type: WordProperties = Field()
 
 
 class AudioLink(BaseModel):
     """The link to the audio file along with the language variant."""
 
-    url_part: str = Field(example="PT_BR/f5/f5491d72610965dd0a287c1ab1025c0f-300")
+    url: str = Field(
+        example=(
+            "https://www.linguee.com/mp3/PT_BR/f5/"
+            "f5491d72610965dd0a287c1ab1025c0f-300.mp3"
+        )
+    )
     lang: str = Field(example="Brazilian Portuguese")
 
 
-class TranslationExample(BaseModel):
-    source: str = Field(
-        example="Estou obrigado pelo contrato a trabalhar seis horas por dia."
-    )
-    target: str = Field(example="I am bound by the contract to work six hours a day.")
-
-
-class Translation(BaseModel):
-    """One of the possible translation of the term."""
-
-    featured: str = Field(example=False)
-    text: str = Field(example="required")
-    bid: str = Field(example="10003211476")
-    lemma_id: str = Field(example="EN:required5162")
-    word_type: WordProperties = Field()
-    audio_links: list[AudioLink]
-    examples: list[TranslationExample]
-
-
-class Lemma(BaseModel):
-    """Information about one found word (lemma)."""
-
-    featured: bool = Field(example=False)
-    wt: bool = Field(example=1000)
-    lemma_id: str = Field(example="PT:obrigado49462")
-    text: str = Field(example="obrigado")
-    word_type: WordProperties
-    audio_links: list[AudioLink]
-    forms: list[LemmaForm]
-    translations: list[Translation]
-
-
-class RealExample(BaseModel):
-    """An example of usage of the word in the context."""
-
-    id: str = Field(example="row_0_8255523216_0")
-    src: str = Field(
-        example=(
-            "Parabéns e um grande obrigado a todos que ajudaram [...] "
-            "ao sucesso desta noite!"
-        )
-    )
-    dst: str = Field(
-        example=(
-            "Well done and many thanks to everyone who helped [...] "
-            "make this evening a success!"
-        )
-    )
-    url: str = Field(example="http://www.findmadeleine.com/pt/updates@page=2.html")
-
-
-class APIResponse(BaseModel):
+class LingueePage(BaseModel):
     """The root structure of parsed API response."""
+
+    class Lemma(BaseModel):
+        """Information about one found word (lemma)."""
+
+        class Translation(BaseModel):
+            """One of the possible translation of the term."""
+
+            featured: bool = Field(example=False)
+            text: str = Field(example="required")
+            pos: Optional[str] = Field(example="adjective / past participle, masculine")
+            audio_links: Optional[list[AudioLink]]
+
+        featured: bool = Field(example=False)
+        text: str = Field(example="obrigado")
+        pos: Optional[str] = Field(example="interjection")
+        audio_links: Optional[list[AudioLink]]
+        translations: list[Translation]
+
+    class Example(BaseModel):
+        """One example."""
+
+        class Translation(BaseModel):
+            """Translation example."""
+
+            text: str = Field(example="big thanks")
+            pos: Optional[str] = Field(example="n [colloq.]")
+
+        text: str = Field(example="muito obrigado")
+        pos: Optional[str] = Field(example="m")
+        audio_links: Optional[list[AudioLink]]
+        translations: list[Translation]
+
+    class ExternalSource(BaseModel):
+        """An example of usage of the word in the context."""
+
+        src: str = Field(
+            example=(
+                "Parabéns e um grande obrigado a todos que ajudaram [...] "
+                "ao sucesso desta noite!"
+            )
+        )
+        dst: str = Field(
+            example=(
+                "Well done and many thanks to everyone who helped [...] "
+                "make this evening a success!"
+            )
+        )
+        src_url: str = Field(
+            example="http://www.findmadeleine.com/pt/updates@page=2.html"
+        )
+        dst_url: str = Field(example="http://www.findmadeleine.com/updates@page=2.html")
 
     src_lang: str = Field(example="pt")
     dst_lang: str = Field(example="en")
     query: str = Field(example="obrigado")
     correct_query: str = Field(example="obrigado")
-    exact_matches: list[Lemma]
-    inexact_matches: list[Lemma]
-    real_examples: list[RealExample]
+    lemmas: list[Lemma]
+    examples: list[Example]
+    external_sources: list[ExternalSource]
+
+
+class LingueeCorrection(BaseModel):
+    """
+    A redirect to the correct form.
+
+    This response is returned by a parser, when a spelling issue is found, and
+    a redirect to the correct form is needed.
+    """
+
+    correction: str
+
+
+class LingueeNotFound(BaseModel):
+    """
+    LemmaTranslation not found.
+
+    The query is not recognized as a meaningful word. Nothing to translate.
+    """
+
+    pass
+
+
+class ParseError(BaseModel):
+    """Unexpected parsing error. Don't know what to do."""
+
+    message: str
+
+
+ParseResult = Union[ParseError, LingueeCorrection, LingueePage, LingueeNotFound]

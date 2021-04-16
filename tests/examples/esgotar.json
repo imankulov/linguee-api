@@ -1,0 +1,454 @@
+{
+  "src_lang": "PT",
+  "dst_lang": "EN",
+  "query": "esgotar",
+  "correct_query": "esgotar",
+  "lemmas": [
+    {
+      "featured": true,
+      "text": "esgotar",
+      "pos": "verb",
+      "audio_links": [
+        {
+          "url": "https://www.linguee.com/mp3/PT_BR/f6/f64ad9c57b46458c3144ea578d68a43e-200.mp3",
+          "lang": "Brazilian Portuguese"
+        },
+        {
+          "url": "https://www.linguee.com/mp3/PT_PT/f6/f64ad9c57b46458c3144ea578d68a43e-200.mp3",
+          "lang": "European Portuguese"
+        }
+      ],
+      "translations": [
+        {
+          "featured": true,
+          "text": "exhaust",
+          "pos": "verb",
+          "audio_links": [
+            {
+              "url": "https://www.linguee.com/mp3/EN_US/84/843998f26d20d75924214d3b9c9d20d6-200.mp3",
+              "lang": "American English"
+            },
+            {
+              "url": "https://www.linguee.com/mp3/EN_UK/84/843998f26d20d75924214d3b9c9d20d6-200.mp3",
+              "lang": "British English"
+            }
+          ]
+        },
+        {
+          "featured": true,
+          "text": "deplete",
+          "pos": "verb",
+          "audio_links": [
+            {
+              "url": "https://www.linguee.com/mp3/EN_US/9a/9aba26cbfdb6af983d819c1cd0c1ac17-200.mp3",
+              "lang": "American English"
+            },
+            {
+              "url": "https://www.linguee.com/mp3/EN_UK/9a/9aba26cbfdb6af983d819c1cd0c1ac17-200.mp3",
+              "lang": "British English"
+            }
+          ]
+        },
+        {
+          "featured": true,
+          "text": "sell out",
+          "pos": "verb",
+          "audio_links": [
+            {
+              "url": "https://www.linguee.com/mp3/EN_US/f7/f7913e55dedd60cb934feb79eadda8b6-200.mp3",
+              "lang": "American English"
+            },
+            {
+              "url": "https://www.linguee.com/mp3/EN_UK/f7/f7913e55dedd60cb934feb79eadda8b6-200.mp3",
+              "lang": "British English"
+            }
+          ]
+        },
+        {
+          "featured": true,
+          "text": "drain",
+          "pos": "verb",
+          "audio_links": [
+            {
+              "url": "https://www.linguee.com/mp3/EN_US/be/be2bb77e0e1f927dcb4c2b2c254e1468-200.mp3",
+              "lang": "American English"
+            },
+            {
+              "url": "https://www.linguee.com/mp3/EN_UK/be/be2bb77e0e1f927dcb4c2b2c254e1468-200.mp3",
+              "lang": "British English"
+            }
+          ]
+        },
+        {
+          "featured": true,
+          "text": "tax",
+          "pos": "verb",
+          "audio_links": [
+            {
+              "url": "https://www.linguee.com/mp3/EN_US/06/06565e5611f23fdf8cc43e5077b92b54-200.mp3",
+              "lang": "American English"
+            },
+            {
+              "url": "https://www.linguee.com/mp3/EN_UK/06/06565e5611f23fdf8cc43e5077b92b54-200.mp3",
+              "lang": "British English"
+            }
+          ]
+        },
+        {
+          "featured": false,
+          "text": "run out",
+          "pos": "verb",
+          "audio_links": [
+            {
+              "url": "https://www.linguee.com/mp3/EN_US/17/1706c665b5064ffd40ba2cd4752ae111-200.mp3",
+              "lang": "American English"
+            },
+            {
+              "url": "https://www.linguee.com/mp3/EN_UK/17/1706c665b5064ffd40ba2cd4752ae111-200.mp3",
+              "lang": "British English"
+            }
+          ]
+        },
+        {
+          "featured": false,
+          "text": "wear out",
+          "pos": "verb",
+          "audio_links": [
+            {
+              "url": "https://www.linguee.com/mp3/EN_US/f2/f2fae14e4aa8d2430b5274c335e29622-200.mp3",
+              "lang": "American English"
+            },
+            {
+              "url": "https://www.linguee.com/mp3/EN_UK/f2/f2fae14e4aa8d2430b5274c335e29622-200.mp3",
+              "lang": "British English"
+            }
+          ]
+        },
+        {
+          "featured": false,
+          "text": "consume",
+          "pos": "verb",
+          "audio_links": [
+            {
+              "url": "https://www.linguee.com/mp3/EN_US/f0/f0ef8c72418989a4bb20243ccb61eeb0-200.mp3",
+              "lang": "American English"
+            },
+            {
+              "url": "https://www.linguee.com/mp3/EN_UK/f0/f0ef8c72418989a4bb20243ccb61eeb0-200.mp3",
+              "lang": "British English"
+            }
+          ]
+        },
+        {
+          "featured": false,
+          "text": "wear thin",
+          "pos": "verb",
+          "audio_links": [
+            {
+              "url": "https://www.linguee.com/mp3/EN_UK/dd/dd1a6b4b9d4210c97c740197580e1276-200.mp3",
+              "lang": "British English"
+            }
+          ]
+        },
+        {
+          "featured": false,
+          "text": "use up",
+          "pos": "verb",
+          "audio_links": null
+        },
+        {
+          "featured": false,
+          "text": "dry",
+          "pos": "verb",
+          "audio_links": [
+            {
+              "url": "https://www.linguee.com/mp3/EN_US/81/81e047aa9039b5428b6d6f5c440f4670-200.mp3",
+              "lang": "American English"
+            },
+            {
+              "url": "https://www.linguee.com/mp3/EN_UK/81/81e047aa9039b5428b6d6f5c440f4670-200.mp3",
+              "lang": "British English"
+            }
+          ]
+        },
+        {
+          "featured": false,
+          "text": "empty",
+          "pos": "verb",
+          "audio_links": [
+            {
+              "url": "https://www.linguee.com/mp3/EN_US/a2/a2e4822a98337283e39f7b60acf85ec9-200.mp3",
+              "lang": "American English"
+            },
+            {
+              "url": "https://www.linguee.com/mp3/EN_UK/a2/a2e4822a98337283e39f7b60acf85ec9-200.mp3",
+              "lang": "British English"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "featured": false,
+      "text": "esgotar a paciência",
+      "pos": "v",
+      "audio_links": [
+        {
+          "url": "https://www.linguee.com/mp3/PT_BR/15/159c0f4580a54bae204ab6e425eb8a2f-200.mp3",
+          "lang": "Brazilian Portuguese"
+        },
+        {
+          "url": "https://www.linguee.com/mp3/PT_PT/15/159c0f4580a54bae204ab6e425eb8a2f-200.mp3",
+          "lang": "European Portuguese"
+        }
+      ],
+      "translations": [
+        {
+          "featured": false,
+          "text": "wear out",
+          "pos": "verb",
+          "audio_links": [
+            {
+              "url": "https://www.linguee.com/mp3/EN_US/f2/f2fae14e4aa8d2430b5274c335e29622-200.mp3",
+              "lang": "American English"
+            },
+            {
+              "url": "https://www.linguee.com/mp3/EN_UK/f2/f2fae14e4aa8d2430b5274c335e29622-200.mp3",
+              "lang": "British English"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "featured": false,
+      "text": "esgotar-se",
+      "pos": "v",
+      "audio_links": [
+        {
+          "url": "https://www.linguee.com/mp3/PT_BR/10/10793b8ea5331fc1fd3fa2630174ae09-200.mp3",
+          "lang": "Brazilian Portuguese"
+        },
+        {
+          "url": "https://www.linguee.com/mp3/PT_PT/10/10793b8ea5331fc1fd3fa2630174ae09-200.mp3",
+          "lang": "European Portuguese"
+        }
+      ],
+      "translations": [
+        {
+          "featured": false,
+          "text": "burn out",
+          "pos": "verb",
+          "audio_links": [
+            {
+              "url": "https://www.linguee.com/mp3/EN_UK/fb/fbf17d4c639fe9feb3e83f439cafbe14-200.mp3",
+              "lang": "British English"
+            }
+          ]
+        },
+        {
+          "featured": false,
+          "text": "peter out",
+          "pos": "verb",
+          "audio_links": [
+            {
+              "url": "https://www.linguee.com/mp3/EN_US/48/48841d33eeb87400fc0171de979ede05-200.mp3",
+              "lang": "American English"
+            },
+            {
+              "url": "https://www.linguee.com/mp3/EN_UK/48/48841d33eeb87400fc0171de979ede05-200.mp3",
+              "lang": "British English"
+            }
+          ]
+        },
+        {
+          "featured": false,
+          "text": "frazzle",
+          "pos": "verb",
+          "audio_links": [
+            {
+              "url": "https://www.linguee.com/mp3/EN_UK/69/6985a198c748bf3ecc337105e17bb94e-200.mp3",
+              "lang": "British English"
+            },
+            {
+              "url": "https://www.linguee.com/mp3/EN_US/69/6985a198c748bf3ecc337105e17bb94e-100.mp3",
+              "lang": "American English"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "external_sources": [
+    {
+      "src": "Quando a pilha está prestes a esgotar-se, o ponteiro pequeno dos segundos move-se a intervalos de dois segundos em vez dos [...] [...] intervalos normais de um segundo.",
+      "dst": "When the battery nears its end, the small second hand moves at two-second intervals instead of normal one-second intervals.",
+      "src_url": "http://www.seikowatches.com/support/ib/pdf/portuguese/7t82_p.pdf",
+      "dst_url": "http://www.seikowatches.com/support/ib/pdf/SEIKO_7T82.pdf"
+    },
+    {
+      "src": "E temos de esgotar todas as vias possíveis [...] para o conseguir.",
+      "dst": "And we must exhaust every possible avenue [...] in order to do so.",
+      "src_url": "http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+CRE+20030212+ITEMS+DOC+XML+V0//PT&amp;language=PT",
+      "dst_url": "http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+CRE+20030212+ITEMS+DOC+XML+V0//EN&amp;language=EN"
+    },
+    {
+      "src": "Além disso, a OTAN estava a criar um precedente [...] perigoso ao não esgotar os meios diplomáticos [...] de resolução do conflito antes de [...] recorrer à força e ignorando as objecções chinesas, indianas e russas.",
+      "dst": "Moreover, NATO was creating a dangerous [...] precedent by failing to exhaust diplomatic means [...] of resolving the conflict before resorting [...] to force and ignoring Chinese, Indian and Russian objections.",
+      "src_url": "http://www.nato.int/docu/review/2004/issue4/portuguese/main_pr.html",
+      "dst_url": "http://www.nato.int/docu/review/2004/issue4/english/main_pr.html"
+    },
+    {
+      "src": "d) Informar sobre eventuais procedimentos instaurados pelo [...] fornecedor para medir e condicionar o tráfego, a [...] fim de evitar esgotar a capacidade [...] num segmento da rede, ou ultrapassá-la, bem [...] como sobre o modo como esses procedimentos poderão repercutir-se na qualidade do serviço",
+      "dst": "(d) provide information on any procedures put in place by the [...] provider to measure and shape traffic so as [...] to avoid filling or overfilling a network [...] link, and on how those procedures could impact on service quality",
+      "src_url": "http://www.edps.europa.eu/EDPSWEB/webdav/site/mySite/shared/Documents/EDPS/DataProt/Legislation/Dir_2009_136_PT.pdf",
+      "dst_url": "http://www.edps.europa.eu/EDPSWEB/webdav/site/mySite/shared/Documents/EDPS/DataProt/Legislation/Dir_2009_136_EN.pdf"
+    },
+    {
+      "src": "Isto significa [...] que, a cada dois anos, é feita uma avaliação de todas as missões que estão prestes a esgotar o orçamento, com a perspectiva de prolongamento das mesmas.",
+      "dst": "It means that, every two years, a comprehensive evaluation is made of all missions approaching the end of their funding, with a view to extending them.",
+      "src_url": "http://www.esa.int/esaCP/SEMS02GMTGG_Portugal_0.html",
+      "dst_url": "http://www.esa.int/esaCP/SEMR1MIRPGG_index_0.html"
+    },
+    {
+      "src": "A fonte de alimentação integrada sempre consumo pequenas quantidades de [...] corrente e poderia esgotar a bateria do [...] veículo.",
+      "dst": "The integrated mains adapter always consumes a small amount of [...] energy and could drain the car battery.",
+      "src_url": "http://www.navigon.com/portal/common/Download/Manual/PNA/Navigon8310/Portugues_manual.pdf",
+      "dst_url": "http://www.navigon.com/portal/common/Download/Manual/PNA/Navigon8310/English_manual.pdf"
+    },
+    {
+      "src": "Claro que não, eles são um importante e útil [...] instrumento, porém não podem esgotar o horizonte de definição [...] das políticas passando a ser o [...] único parâmetro segundo o qual elas devam ser avaliadas.",
+      "dst": "Of course not, they are important and useful instruments, [...] however they cannot exhaust the amount of policy [...] definitions by becoming the only parameter [...] according to which they must be assessed.",
+      "src_url": "http://www.avsi.org/documenti/ODesenvolvimentoTemUmRostoAbstract.pdf",
+      "dst_url": "http://www.avsi.org/documenti/DevelopmentHasAFaceAbstract.pdf"
+    },
+    {
+      "src": "O problema era simplesmente de regras e procedimentos [...] referentes à decisão de recorrer à força e [...] a necessidade de esgotar previamente todas [...] as opções diplomáticas, incluindo as sanções políticas e económicas.",
+      "dst": "The issue was simply the rules and [...] procedures concerning the decision to use [...] force and the need to exhaust all diplomatic options, [...] including political and economic sanctions, beforehand.",
+      "src_url": "http://www.nato.int/docu/review/2004/issue4/portuguese/main_pr.html",
+      "dst_url": "http://www.nato.int/docu/review/2004/issue4/english/main_pr.html"
+    },
+    {
+      "src": "Quando a bateria secundária está para esgotar-se-Função de advertência de carga [...] insuficiente 2",
+      "dst": "When the battery reaches low charge-Insufficient charge warning function 2",
+      "src_url": "http://www.citizenwatch.jp/support/pdf/u700/p.pdf",
+      "dst_url": "http://www.citizenwatch.jp/support/pdf/u700/e.pdf"
+    },
+    {
+      "src": "Quer esgotar a sua capacidade em menos de uma hora?",
+      "dst": "Do you want to end your dependency on your website's vendor?",
+      "src_url": "http://www.e-gds.com/Page.asp?PageURL=Servicos",
+      "dst_url": "http://www.e-gds.com/EN/Page.asp?PageURL=Servicos"
+    },
+    {
+      "src": "Quando o usuário alcança os últimos 10 por cento dos números do [...] imobilizado máximos que podem ser atribuídos, o sistema notifica o usuário de que o intervalo [...] de números está para se esgotar.",
+      "dst": "When you reach the last 10 percent of the [...] maximum assignable asset numbers of an interval, the system notifies you that the number [...] interval will soon be exhausted.",
+      "src_url": "http://help.sap.com/saphelp_40b/helpdata/pt/4f/71e04d448011d189f00000e81ddfac/content.htm",
+      "dst_url": "http://help.sap.com/saphelp_40b/helpdata/en/4f/71e04d448011d189f00000e81ddfac/content.htm"
+    },
+    {
+      "src": "Porém, por mais ampla que seja essa [...] lista, está longe de esgotar as instituições e [...] os grupos que deveriam estar envolvidos [...] nessa campanha por reformas democráticas na governança financeira internacional.",
+      "dst": "But wide as this list [...] may be, it far from exhausts the institutions [...] and groups that should be involved in such a campaign [...] for democratic reforms in international financial governance.",
+      "src_url": "http://www.ibase.org.br/userimages/liv2_ibase_fer_port[1].pdf",
+      "dst_url": "http://www.ibase.br/userimages/liv2_ibase_fer_ing.pdf"
+    },
+    {
+      "src": "Se o usuário sair da tela Gerenciador de chamadas, ou se o tempo de [...] espera da tela de login da interface de [...] administração web se esgotar, o sistema entrará [...] no modo inativo depois do intervalo especificado [...] nas preferências Tempo de espera para proteção de tela e Tempo de espera para descanso da tela.",
+      "dst": "If you leave the Call Manager screen, or the [...] web administration interface times out to [...] the login screen, the system goes to [...] sleep after the interval specified by the Screen [...] Saver Timeout plus the Sleep Timeout preferences.",
+      "src_url": "http://www.lifesize.com/Support/Browse_Support/Video/All_Video_Releases/~/media/Files/Support/video/current-lang/administrator-guide_video_45_portuguese.ashx",
+      "dst_url": "http://www.lifesize.com/Support/Browse_Support/Video/All_Video_Releases/~/media/Files/Support/video/administrator-guide_video_45_english.ashx"
+    },
+    {
+      "src": "Por conseguinte, a obrigação de esgotar todos os outros meios [...] de indemnização, que prevalece na maioria dos Estados-Membros, [...] pode ser de difícil aplicação.",
+      "dst": "The requirement for exhausting all other means for [...] compensation, prevalent in most Member States, may therefore be difficult to apply.",
+      "src_url": "http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=COM:2001:0536:FIN:PT:PDF",
+      "dst_url": "http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=COM:2001:0536:FIN:EN:PDF"
+    },
+    {
+      "src": "A câmara continuará [...] a gravar até esgotar o tempo total [...] de gravação ou até o botão disparador do obturador voltar a ser premido de novo.",
+      "dst": "The camera will continue [...] to record until the recording time [...] is used or the shutter-release button is pressed again.",
+      "src_url": "http://ca.konicaminolta.com/support/manuals/digital_cameras/dimage-e/dimage_e323/D_E323_PT.pdf",
+      "dst_url": "http://ca.konicaminolta.com/support/manuals/digital_cameras/dimage-e/dimage_e323/D_E323_E.pdf"
+    },
+    {
+      "src": "Não há como esgotar o sentido desse sentimento [...] nobre, profundo e grande que os une.",
+      "dst": "We can never exhaust the meaning of this [...] noble, deep and great feeling which unites them.",
+      "src_url": "http://www.equipes-notre-dame.com/lourdes/_portugais/pt_conferences/pt_conf_eri/ERI_Houston_2001/pt_Houston_2001_Assis_Pontes.pdf",
+      "dst_url": "http://www.equipes-notre-dame.com/lourdes/_anglais/ang_conferences/ang_conf_eri/ERI_Houston_2001/an_Houston_2001_Assi_Pontes.pdf"
+    },
+    {
+      "src": "Assim, se os devedores \"seguros\" [...] emitirem grandes quantidades de obrigações [...] do tesouro, poderão esgotar o capital de empréstimo [...] disponível, obrigando os devedores [...] menos seguros a pagar um prémio.",
+      "dst": "Thus, if \"safe\" borrowers are issuing large volumes of government bonds, [...] they can dry up the supply of loan capital available, [...] leaving less safe borrowers to pay a premium.",
+      "src_url": "http://www.ilo.org/public/english/region/eurpro/geneva/download/events/lisbon2009/policy_responses_po.pdf",
+      "dst_url": "http://www.ilo.org/public/english/region/eurpro/geneva/download/events/lisbon2009/policy_responses_en.pdf"
+    },
+    {
+      "src": "Esta perspectiva obscura, que poderia desatar o descontentamento da população, hoje fortemente contida pelas ilusões que o triunfo de Obama despertou poderia ser muito [...] custosa para o conjunto do sistema [...] dominante que poderia esgotar antes do pensado [...] esta válvula de contenção em função de [...] salvar os interesses de seus setores mais altos.",
+      "dst": "This dark outlook, that could trigger popular dissatisfaction, now strongly contained by the illusions that Obama's victory awakened, could [...] be ominous for the entire US economic [...] system, that could wear out this containment [...] valve earlier than expected, in order [...] to save itself and in accordance with the interests of its highest groups.",
+      "src_url": "http://www.ft-ci.org/article.php3?id_article=1697?lang=pt_br",
+      "dst_url": "http://www.ft-ci.org/article.php3?id_article=1715?lang=en"
+    },
+    {
+      "src": "Sim, o capitalismo das últimas décadas atingiu um [...] estágio superior em seu desenvolvimento, hoje já não se satisfaz em explorar somente o Homem, [...] mas também visa esgotar a Terra.",
+      "dst": "Yes, the rampant capitalism of the latest decades has [...] reached a superior stage of its development, today it isn't enough to exploit Man, it is also [...] necessary to plunder the Earth.",
+      "src_url": "http://miradaglobal.com/index.php?option=com_content&view=article&id=770%3Ala-fase-capitalista-de-la-devastacion&catid=32%3Aecologia&Itemid=36&lang=pt",
+      "dst_url": "http://miradaglobal.com/index.php?option=com_content&view=article&id=770%3Ala-fase-capitalista-de-la-devastacion&catid=32%3Aecologia&Itemid=36&lang=en"
+    },
+    {
+      "src": "É mais do que tempo de começarmos finalmente a procurar alternativas para o carvão, que está a começar a esgotar-se.",
+      "dst": "It is now high time we finally started looking for alternatives to coal resources, which are beginning to run out.",
+      "src_url": "http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+CRE+20080311+ITEMS+DOC+XML+V0//PT&amp;language=PT",
+      "dst_url": "http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+CRE+20080311+ITEMS+DOC+XML+V0//EN&amp;language=EN"
+    },
+    {
+      "src": "Você pode começar a se preparar para a rodada seguinte assim que o prazo se esgotar.",
+      "dst": "You can start preparing for the next round as soon as the deadline has passed.",
+      "src_url": "http://pt.mcdonalds.fantasy.fifa.com/M/rules.mc",
+      "dst_url": "http://en.mcdonalds.fantasy.fifa.com/M/rules.mc"
+    },
+    {
+      "src": "As alterações 54, 100 e 156 eliminam a possibilidade, em caso de retirada de um produto existente, de fornecer um período de tempo limite durante o qual seria possível esgotar os stocks existentes.",
+      "dst": "Amendments 54, 100 and 156 delete the possibility, in case of withdrawal of an existing product, to provide for a limited period of time within which existing stocks would be allowed to be used up.",
+      "src_url": "http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=COM:2002:0559:FIN:PT:PDF",
+      "dst_url": "http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=COM:2002:0559:FIN:EN:PDF"
+    },
+    {
+      "src": "Além destes, e sem esgotar a questão, a importância crescente das alterações climáticas, a necessidade de uma integração suplementar dos mercados da energia [...] [...] e a necessidade de investimentos.",
+      "dst": "Moreover, the growing importance of climate change, the need for further integration of energy markets and the need for investments, to name but a few.",
+      "src_url": "http://europa.eu/rapid/pressReleasesAction.do?reference=PRES/06/67&format=HTML&aged=1&language=PT&guiLanguage=en",
+      "dst_url": "http://europa.eu/rapid/pressReleasesAction.do?reference=PRES/06/67&format=HTML&aged=1&language=EN&guiLanguage=en"
+    },
+    {
+      "src": "Mas, eles sofrem dificuldades se o dinheiro se esgotar, se as pessoas perderem o interesse, se os protagonistas mudarem, se as questões de política deixarem de ser relevantes, [...] [...] ou se os formuladores de políticas não puderem digerir os resultados.",
+      "dst": "But they run into trouble if the money dries up, people lose interest, protagonists change, policy issues are no longer pertinent, and policy makers can't digest the results.",
+      "src_url": "http://policy-powertools.org/Tools/Understanding/docs/getting_started_tool_portugese.pdf",
+      "dst_url": "http://policy-powertools.org/Tools/Understanding/docs/getting_started_tool_english.pdf"
+    },
+    {
+      "src": "Esta vinheta foi substituída pelo visto com fotografia em todos os postos de emissão de vistos [...] até Outubro de 2004, com excepção de Port Stanley, que continuou a emitir este tipo [...] de visto até esgotar as existências.",
+      "dst": "This vignette was replaced by the photo-enabled visa at all visa-issuing [...] posts by October 2004, with the exception of Port Stanley which continued to issue this [...] visa until supplies were exhausted.",
+      "src_url": "file:///var/shelob/mirror/consilium.europa.eu/prado/PT/2466/docHome.html",
+      "dst_url": "file:///var/shelob/mirror/consilium.europa.eu/prado/EN/2466/docHome.html"
+    },
+    {
+      "src": "Guardar o relógio em lugares escuros durante longos [...] períodos de tempo pode esgotar a energia armazenada e [...] parar o relógio.",
+      "dst": "Storing your watch in dark places for extended periods of time may [...] cause the stored energy to become depleted and your watch [...] to stop.",
+      "src_url": "http://www.citizenwatch.jp/support/pdf/h144/p.pdf",
+      "dst_url": "http://www.citizenwatch.jp/support/pdf/h144/e.pdf"
+    },
+    {
+      "src": "A gravação auto para automaticamente quando o tempo limite foi atingido Para parar a gravação e apagar a [...] pista audio pressione a tecla para baixo do controlador (2).ou o botão disparador (3) antes do [...] tempo de gravação esgotar.",
+      "dst": "To cancel the recording and erase the [...] audio track, press the down key of the controller (2) or the shutter-release button (3) before [...] the recording has finished.",
+      "src_url": "http://ca.konicaminolta.com/support/manuals/digital_cameras/dimage-s/dimage_s414/D_S414_PT.pdf",
+      "dst_url": "http://ca.konicaminolta.com/support/manuals/digital_cameras/dimage-s/dimage_s414/D_S414_E.pdf"
+    },
+    {
+      "src": "Recordamos [...] a seguir alguns daqueles considerados mais importantes, sem ter a pretensão de esgotar o assunto.",
+      "dst": "Some of the most important of these will now follow, without, however, any claim to completeness.",
+      "src_url": "http://www.pcf.va/roman_curia/congregations/ccatheduc/documents/rc_con_ccatheduc_doc_31031998_directorium-diaconi_po.html",
+      "dst_url": "http://www.pcf.va/roman_curia/congregations/ccatheduc/documents/rc_con_ccatheduc_doc_31031998_directorium-diaconi_en.html"
+    }
+  ]
+}

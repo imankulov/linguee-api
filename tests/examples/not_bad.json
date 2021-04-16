@@ -1,0 +1,208 @@
+{
+  "src_lang": "PT",
+  "dst_lang": "EN",
+  "query": "not bad",
+  "correct_query": "not bad",
+  "lemmas": [
+    {
+      "featured": true,
+      "text": "not bad",
+      "pos": "adverb",
+      "audio_links": [
+        {
+          "url": "https://www.linguee.com/mp3/EN_UK/60/60566ff0fb2dc31c4ffa4ca85cec6bd2-0.mp3",
+          "lang": "British English"
+        },
+        {
+          "url": "https://www.linguee.com/mp3/EN_US/60/60566ff0fb2dc31c4ffa4ca85cec6bd2-0.mp3",
+          "lang": "American English"
+        }
+      ],
+      "translations": [
+        {
+          "featured": true,
+          "text": "nada mal",
+          "pos": "adverb",
+          "audio_links": null
+        }
+      ]
+    }
+  ],
+  "examples": [],
+  "external_sources": [
+    {
+      "src": "That being said, I [...] think it was not a bad idea to ask the [...] question.",
+      "dst": "Disto isto, [...] penso que seria conveniente levantar a questão.",
+      "src_url": "http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+CRE+20001003+ITEMS+DOC+XML+V0//EN&amp;language=EN",
+      "dst_url": "http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+CRE+20001003+ITEMS+DOC+XML+V0//PT&amp;language=PT"
+    },
+    {
+      "src": "That's not bad at all for a book about such a complicated scientific [...] subject.",
+      "dst": "Nada mal para um livro sobre um tema científico tão complicado.",
+      "src_url": "http://ec.europa.eu/environment/climat/campaign/news/news20_en.htm",
+      "dst_url": "http://ec.europa.eu/environment/climat/campaign/news/news20_pt.htm"
+    },
+    {
+      "src": "The temperature [...] was 7 degrees C. Not bad, considering they [...] surrounded by polar water.",
+      "dst": "A temperatura era de [...] 7 graus C. Nada mal, considerando que [...] eles são cercados por água gelada.",
+      "src_url": "http://asasdovento.com.br/ingles/di_250701.htm",
+      "dst_url": "http://asasdovento.com.br/di_250701.htm"
+    },
+    {
+      "src": "Starting out part time with a [...] small investment is not a bad idea.",
+      "dst": "Começar com meio expediente e um [...] pequeno investimento não é má idéia.",
+      "src_url": "http://www.america.gov/media/pdf/ejs/0106.pdf",
+      "dst_url": "http://www.america.gov/media/pdf/ejs/0106por.pdf"
+    },
+    {
+      "src": "This is not a bad record after [...] a century which began so badly.",
+      "dst": "Não é mau, para um século que começou [...] de forma tão negativa.",
+      "src_url": "http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+CRE+20030129+ITEMS+DOC+XML+V0//EN&amp;language=EN",
+      "dst_url": "http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+CRE+20030129+ITEMS+DOC+XML+V0//PT&amp;language=PT"
+    },
+    {
+      "src": "Not bad for a segment that [...] has started a movement of publicizing and promoting its exports less than four years ago.",
+      "dst": "Nada mal para um segmento que [...] começou um movimento de divulgação e promoção de suas exportações há menos de quatro anos.",
+      "src_url": "http://www.cosmeticosbr.com.br/ing/conteudo/materias/materia.asp?id=71",
+      "dst_url": "http://cosmeticosbr.com/conteudo/materias/materia.asp?id=71"
+    },
+    {
+      "src": "In our judgment, the [...] geographic criterion is not a bad one in itself and [...] always ends up being included.",
+      "dst": "Segundo a nossa avaliação, o [...] critério geográfico não é um mal em si mesmo [...] e acaba sempre por estar presente.",
+      "src_url": "http://www.dehon.it/scj_dehon/cuore/capgen_xxii/Reports/RELAZIONE-Generale-En.pdf",
+      "dst_url": "http://www.dehon.it/scj_dehon/cuore/capgen_xxii/Reports/RELAZIONE-Generale-Pt.pdf"
+    },
+    {
+      "src": "Not bad for a young man who [...] arrived here without a passport and having as his only document the word of Pastor Antle who had known him in Falmouth.",
+      "dst": "Nada mal para o jovem que aqui [...] chegou, sem passaporte e tendo como único documento a palavra do Pastor Antle que o conhecera em Falmouth.",
+      "src_url": "http://www.vozlusitana.com/edition/?p=703",
+      "dst_url": "http://www.vozlusitana.com/edition/?p=704"
+    },
+    {
+      "src": "That being said, compared with overall disbursement rates for aid, the financial performance [...] of rehabilitation operations is not bad.",
+      "dst": "Contudo, os resultados financeiros específicos das [...] acções de recuperação não são globalmente desfavoráveis, [...] em comparação com o conjunto [...] das taxas de desembolso da ajuda.",
+      "src_url": "http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=OJ:C:2000:113:0001:0032:EN:PDF",
+      "dst_url": "http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=OJ:C:2000:113:0001:0032:PT:PDF"
+    },
+    {
+      "src": "Not bad but doesn't yet beat Torreón, Mexico.",
+      "dst": "Nada mal, mas ainda não melhor que em Torreón, México.",
+      "src_url": "http://asasdovento.com.br/ingles/di_180701.htm",
+      "dst_url": "http://asasdovento.com.br/di_180701.htm"
+    },
+    {
+      "src": "The researcher makes the point [...] that returning these wastewaters to [...] the environment is not a bad thing in itself, [...] as they are nutrients, just like manure [...] is reused as fertiliser in agriculture.",
+      "dst": "O investigador ressalta que a devolução destes resíduos para [...] o meio ambiente não é o mal por si só, porque [...] se tratam de nutrientes, assim como [...] o adubo que é re-utilizado como fertilizante na agricultura.",
+      "src_url": "http://green-community.org/en/blog/41-emitimos-duas-toneladas-de-co2-por-ano-no-consumo-de-alimentos.html",
+      "dst_url": "http://green-community.org/pt/blog/41-emitimos-duas-toneladas-de-co2-por-ano-no-consumo-de-alimentos.html"
+    },
+    {
+      "src": "But hey, we are here to [...] learn, so maybe that's not bad news after all.",
+      "dst": "Mas, como estamos aqui [...] para aprender, talvez não sejam assim tão más [...] notícias.",
+      "src_url": "http://www.autocad2010.com/en/mike/4-how-to-add-parametric-tools-to-autocad-architecture-2010.html",
+      "dst_url": "http://www.autocad2010.com/pt/mike/4-how-to-add-parametric-tools-to-autocad-architecture-2010.html"
+    },
+    {
+      "src": "R.: It's not bad, it just means that [...] the program will use the default English messages, date formats, etc. The program will function normally otherwise.",
+      "dst": "R.: Não é ruim, apenas significa [...] que o programa usará por padrão as mensagens em inglês, formatos de data etc. O programa funcionará normalmente.",
+      "src_url": "http://www.finkproject.org/faq/usage-general.php?phpLang=es",
+      "dst_url": "http://www.finkproject.org/faq/usage-general.php?phpLang=pt"
+    },
+    {
+      "src": "Surrender is not a bad thing when practiced [...] at the right time, but surrendering all the time is not the way of an Avatar [...] who has also mastered the art of steering his or her own life.",
+      "dst": "Render-se não é uma coisa ruim quando praticada [...] na hora certa, mas se render o tempo todo não é a maneira de agir de um [...] Avatar que é proficiente na arte de conduzir o curso de sua própria vida.",
+      "src_url": "http://www.avatarepc.com/html/Pillar5-Forgiveness-Eng.pdf",
+      "dst_url": "http://www.avatarepc.com/html/Pillar5-Forgiveness-PORT.pdf"
+    },
+    {
+      "src": "In and of themselves, these are not bad things, but we cannot rely [...] on them to define our holiness.",
+      "dst": "Em si mesmas, essas coisas não são ruins, mas não podemos nos [...] apoiar nelas para definir a nossa santidade.",
+      "src_url": "http://www.nazarene.org/files/docs/YouthWeek_Lesson_English.pdf",
+      "dst_url": "http://www.nazarene.org/files/docs/YouthWeek_Lesson_Portuguese.pdf"
+    },
+    {
+      "src": "This is not a bad thing, but it [...] is only part, albeit an important part of the total picture.",
+      "dst": "Isto não é mau, mas é apenas uma [...] parte, embora importante do cenário total.",
+      "src_url": "http://www.nato.int/docu/review/2004/issue3/english/book.html",
+      "dst_url": "http://www.nato.int/docu/review/2004/issue3/portuguese/book.html"
+    },
+    {
+      "src": "Not a bad birthday gift for [...] the singer (Simone was born on December 25).",
+      "dst": "Nada mau para um presente [...] de aniversário (Simone nasceu a 25 de dezembro).",
+      "src_url": "http://musicabrasileira.org/simone/1995dezembro.html",
+      "dst_url": "http://musicabrasileira.org/simone/p1995dezembro.html"
+    },
+    {
+      "src": "This Mission Ad Gentes is [...] not the fruit of chance, this is not a bad dream; nor is it an overfeeding [...] of ecclesial or Chapter documents.",
+      "dst": "Esta missão ad gentes não é o fruto da casualidade, não é um sonho mau, nem mesmo [...] é um abarrotamento de documentos eclesiais ou capitulares.",
+      "src_url": "http://fms.it/en/610.php?caso=view_999&num=641",
+      "dst_url": "http://fms.it/pt/610.php?caso=view_999&num=641"
+    },
+    {
+      "src": "First, it is not a bad thing - or an abdication [...] of Europe's security needs - if European integration and stability is Europe's primary focus.",
+      "dst": "Em primeiro lugar, não é negativo - nem constitui [...] uma renúncia às necessidades de segurança da Europa - que a estabilidade [...] e a integração europeias estejam no centro das preocupações da Europa.",
+      "src_url": "http://www.nato.int/docu/review/2005/issue1/english/main_pr.html",
+      "dst_url": "http://www.nato.int/docu/review/2005/issue1/portuguese/main_pr.html"
+    },
+    {
+      "src": "However, the situation is not bad for all stocks.",
+      "dst": "No entanto, a situação não é má em relação a todas [...] as unidades populacionais.",
+      "src_url": "http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=COM:2004:0394:FIN:EN:PDF",
+      "dst_url": "http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=COM:2004:0394:FIN:PT:PDF"
+    },
+    {
+      "src": "Not bad from a population of just over 21 million!",
+      "dst": "Nada mal para uma população de um pouco mais de 21 milhões!",
+      "src_url": "http://www.australia.com/about/culture.aspx",
+      "dst_url": "http://www.australia.com/pt-br/about/culture.aspx"
+    },
+    {
+      "src": "I've had it [...] before and I think it is not bad to be safe here.",
+      "dst": "Eu passei por isso [...] antes e acho que não há porque não tomar cuidado aqui.",
+      "src_url": "http://akitaonrails.com/2008/05/25/rolling-with-rails-2-1-the-first-full-tutorial-part-1",
+      "dst_url": "http://akitaonrails.com/2008/05/26/rolling-with-rails-2-1-o-primeiro-tutorial-completo-parte-1"
+    },
+    {
+      "src": "I know they have a very good [...] chemistry in the clubhouse and I am not a bad guy.",
+      "dst": "Sei que existe um bom [...] ambiente no clube e não sou uma pessoa ruim\".",
+      "src_url": "http://infosurhoy.com/cocoon/saii/xhtml/en_GB/features/saii/features/sports/2010/08/16/feature-03",
+      "dst_url": "http://infosurhoy.com/cocoon/saii/xhtml/pt/features/saii/features/sports/2010/08/16/feature-03"
+    },
+    {
+      "src": "The concert, which took place in [...] one of the world's poorest countries, [...] raised US$8,500 - not bad considering tickets [...] were less than US$3, according to VOA.",
+      "dst": "O concerto foi realizado em um dos países mais [...] pobres do mundo, mas arrecadou a soma de [...] US$ 8.500 - o que não foi pouco, já que [...] os preços dos tickets vendidos estavam abaixo de US$ 3.",
+      "src_url": "http://infosurhoy.com/cocoon/saii/xhtml/en_GB/features/saii/features/main/2010/02/26/feature-01",
+      "dst_url": "http://infosurhoy.com/cocoon/saii/xhtml/pt/features/saii/features/main/2010/02/26/feature-01"
+    },
+    {
+      "src": "Clever market participants learn from the past and [...] understand that risk in itself is not a bad thing.",
+      "dst": "Participantes inteligentes do mercado aprendem com o passado e [...] compreendem que o risco em si não é uma coisa ruim.",
+      "src_url": "http://www.gft.com/index/industries/banking_expertise/risk_portfolio_management_banking.html",
+      "dst_url": "http://www.gft.com/br/pt/index/setores/varejo/portifolio_de_gestao_de_riscos.html"
+    },
+    {
+      "src": "Not bad for a player only starting [...] because of an injury to first-choice Rene Bliard.",
+      "dst": "Nada mal para um jogador que só foi [...] escalado devido à lesão do titular René Bliard.",
+      "src_url": "http://www.fifa.com/worldcup/archive/edition=15/overview.html",
+      "dst_url": "http://pt.fifa.com/worldcup/archive/edition=15/overview.html"
+    },
+    {
+      "src": "I confess that I left with an [...] inexplicable feeling and it was not bad, quite the contrary.",
+      "dst": "Confesso que saí de lá com uma sensação [...] inexplicável e não era algo ruim, muito pelo contrário.",
+      "src_url": "http://ninhodaserpente.com.br/dop/?page_id=558&lang=en",
+      "dst_url": "http://ninhodaserpente.com.br/dop/?page_id=387"
+    },
+    {
+      "src": "But then, maybe 5 seconds later, people [...] started to say: \"not bad\", \"I could order [...] this in a disco\", \"ohh, it is cool\".",
+      "dst": "Mas depois, uns 5 segundos mais tarde, as pessoas [...] começaram a dizer: \"nada mau\", \"poderia pedir [...] numa discoteca\", \"ohhh, que refrescante\".",
+      "src_url": "http://quevedoportwine.com/wine/port-and-tonic-a-nice-marriage/",
+      "dst_url": "http://quevedoportwine.com/pt/wine/port-and-tonic-a-nice-marriage/"
+    },
+    {
+      "src": "Not bad for a vehicle that [...] wasn't even built as a thoroughbred racer!",
+      "dst": "Nada mal para um veículo [...] que nem sequer foi construído como um carro de corrida!",
+      "src_url": "http://www.turbodriven.com/tools/download.aspx?t=document&r=413&d=470",
+      "dst_url": "http://www.turbodriven.com/tools/download.aspx?t=document&r=413&d=471"
+    }
+  ]
+}

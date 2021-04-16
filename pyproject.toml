@@ -9,7 +9,7 @@ authors = ["Roman Imankulov <roman.imankulov@gmail.com>"]
 license = "MIT"
 classifiers = [
     "Intended Audience :: Developers",
-    ]
+]
 include = [
     "CHANGELOG.md"
 ]
@@ -19,6 +19,8 @@ python = "^3.9"
 fastapi = "^0.63.0"
 pydantic = "^1.8.1"
 xextract = "^0.1.8"
+httpx = "^0.17.1"
+chardet = "^4.0.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.1.2"
@@ -27,6 +29,9 @@ black = "^20.8b1"
 flake8 = "^3.8.4"
 coverage = "^5.4"
 import-linter = "^1.2.1"
+pytest-asyncio = "^0.14.0"
+ipython = "^7.22.0"
+click = "^7.1.2"
 
 [tool.coverage.run]
 source = ["tests", "linguee_api"]
