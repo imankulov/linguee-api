@@ -1,4 +1,4 @@
-"""Data classed that define the schema of the API response."""
+"""Data classes that define the schema of the API response."""
 from typing import Optional, Union
 
 from pydantic import BaseModel, Field

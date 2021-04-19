@@ -2,10 +2,10 @@
 import json
 import pathlib
 
-import chardet
 import click
 
 from linguee_api.parsers import XExtractParser
+from linguee_api.utils import read_text
 
 examples = [
     "not_bad.html",
@@ -27,12 +27,6 @@ def parse_page(filename_html: str):
     pathlib.Path(filename_json).write_text(
         json.dumps(page_json, indent=2, ensure_ascii=False)
     )
-
-
-def read_text(path: pathlib.Path) -> str:
-    content = path.read_bytes()
-    encoding = chardet.detect(content)["encoding"]
-    return content.decode(encoding)
 
 
 if __name__ == "__main__":

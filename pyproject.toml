@@ -21,6 +21,8 @@ pydantic = "^1.8.1"
 xextract = "^0.1.8"
 httpx = "^0.17.1"
 chardet = "^4.0.0"
+uvicorn = "^0.13.4"
+furl = "^2.1.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.1.2"

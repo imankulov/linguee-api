@@ -2,10 +2,10 @@ import json
 import pathlib
 from typing import Optional
 
-import chardet
 import pytest
 
 from linguee_api.parsers import XExtractParser
+from linguee_api.utils import read_text
 
 
 @pytest.fixture
@@ -76,9 +76,3 @@ def test_parse_to_dict_should_return_parseable_result(
 ):
     page_html = read_text(examples_dir / filename_html)
     XExtractParser().parse_to_page(page_html)
-
-
-def read_text(path: pathlib.Path) -> str:
-    content = path.read_bytes()
-    encoding = chardet.detect(content)["encoding"]
-    return content.decode(encoding)

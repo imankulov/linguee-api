@@ -1,40 +1,10 @@
+from typing import Union
 from urllib.parse import urlencode
 
-from linguee_api.downloaders import IDownloader
+from linguee_api.const import LANGUAGES, MAX_REDIRECTS, LanguageCode
+from linguee_api.downloaders import DownloaderError, IDownloader
 from linguee_api.parsers import IParser
 from linguee_api.schema import LingueeCorrection, LingueePage, ParseError
-
-USER_AGENT = "Linguee API proxy (https://github.com/imankulov/linguee-api)"
-
-LANGUAGES = {
-    "BG": "bulgarian",
-    "CS": "czech",
-    "DA": "danish",
-    "DE": "german",
-    "EL": "greek",
-    "EN": "english",
-    "ES": "spanish",
-    "ET": "estonian",
-    "FI": "finnish",
-    "FR": "french",
-    "HU": "hungarian",
-    "IT": "italian",
-    "JA": "japanese",
-    "LT": "lithuanian",
-    "LV": "latvian",
-    "MT": "maltese",
-    "NL": "dutch",
-    "PL": "polish",
-    "PT": "portuguese",
-    "RO": "romanian",
-    "RU": "russian",
-    "SK": "slovak",
-    "SL": "slovene",
-    "SV": "swedish",
-    "ZH": "chinese",
-}
-
-MAX_REDIRECTS = 5
 
 
 class APIClient:
@@ -53,10 +23,10 @@ class APIClient:
         self,
         *,
         query: str,
-        src_lang_code: str,
-        dst_lang_code: str,
+        src_lang_code: LanguageCode,
+        dst_lang_code: LanguageCode,
         guess_direction: bool,
-    ):
+    ) -> Union[LingueePage, ParseError]:
         url = get_linguee_url(
             query=query,
             src_lang_code=src_lang_code,
@@ -65,7 +35,11 @@ class APIClient:
         )
 
         for i in range(self.max_redirects):
-            page_html = await self.page_downloader.download(url)
+            try:
+                page_html = await self.page_downloader.download(url)
+            except DownloaderError as error:
+                return ParseError(message=str(error))
+
             parse_result = self.page_parser.parse(page_html)
             if isinstance(parse_result, ParseError):
                 return parse_result
@@ -77,7 +51,7 @@ class APIClient:
                     guess_direction=guess_direction,
                 )
             elif isinstance(parse_result, LingueePage):
-                return LingueePage
+                return parse_result
             else:
                 raise RuntimeError("Unexpected API result.")
 
@@ -89,8 +63,8 @@ class APIClient:
 def get_linguee_url(
     *,
     query: str,
-    src_lang_code: str,
-    dst_lang_code: str,
+    src_lang_code: LanguageCode,
+    dst_lang_code: LanguageCode,
     guess_direction: bool,
 ):
     """
