@@ -7,7 +7,9 @@ from linguee_api.parsers import IParser
 from linguee_api.schema import LingueeCorrection, LingueePage, ParseError
 
 
-class APIClient:
+class LingueeClient:
+    """Linguee client. The core class of the application."""
+
     def __init__(
         self,
         *,

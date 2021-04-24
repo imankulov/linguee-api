@@ -1,4 +1,4 @@
-from linguee_api.api_client import get_linguee_url
+from linguee_api.linguee_client import get_linguee_url
 
 
 def test_get_linguee_url_should_return_valid_url():

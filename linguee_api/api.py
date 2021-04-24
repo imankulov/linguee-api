@@ -1,13 +1,13 @@
 from fastapi import FastAPI, Response, status
 
-from linguee_api.api_client import APIClient
 from linguee_api.const import LanguageCode
 from linguee_api.downloaders import HTTPXDownloader
+from linguee_api.linguee_client import LingueeClient
 from linguee_api.parsers import XExtractParser
 from linguee_api.schema import LingueePage, ParseError
 
 app = FastAPI()
-client = APIClient(page_downloader=HTTPXDownloader(), page_parser=XExtractParser())
+client = LingueeClient(page_downloader=HTTPXDownloader(), page_parser=XExtractParser())
 
 
 @app.get(
