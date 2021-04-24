@@ -55,7 +55,7 @@ class LingueeClient:
             elif isinstance(parse_result, LingueePage):
                 return parse_result
             else:
-                raise RuntimeError("Unexpected API result.")
+                raise RuntimeError(f"Unexpected API result: {parse_result}")
 
         return ParseError(
             message=f"Still redirecting after {self.max_redirects} redirects"
