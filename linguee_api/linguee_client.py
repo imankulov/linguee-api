@@ -80,5 +80,5 @@ def get_linguee_url(
         "ajax": "1",
     }
     if not guess_direction:
-        query_params["source"] = src_lang_code
+        query_params["source"] = src_lang_code.upper()
     return f"{url}?{urlencode(query_params)}"
