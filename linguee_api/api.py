@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Response, status
+from starlette.responses import RedirectResponse
 
 from linguee_api.const import LanguageCode
 from linguee_api.downloaders import HTTPXDownloader
@@ -8,6 +9,11 @@ from linguee_api.schema import LingueePage, ParseError
 
 app = FastAPI()
 client = LingueeClient(page_downloader=HTTPXDownloader(), page_parser=XExtractParser())
+
+
+@app.get("/")
+def index():
+    return RedirectResponse("/docs")
 
 
 @app.get(
