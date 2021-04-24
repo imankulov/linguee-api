@@ -1,23 +1,30 @@
 from fastapi import FastAPI, Response, status
 from starlette.responses import RedirectResponse
 
-from linguee_api.const import LanguageCode
-from linguee_api.downloaders import HTTPXDownloader
+from linguee_api.const import PROJECT_DESCRIPTION, LanguageCode
+from linguee_api.downloaders import HTTPXDownloader, MemoryCache
 from linguee_api.linguee_client import LingueeClient
 from linguee_api.parsers import XExtractParser
 from linguee_api.schema import LingueePage, ParseError
 
-app = FastAPI()
-client = LingueeClient(page_downloader=HTTPXDownloader(), page_parser=XExtractParser())
+description = ""
+
+app = FastAPI(
+    title="Linguee API",
+    description=PROJECT_DESCRIPTION,
+    version="2.0.0",
+)
+page_downloader = MemoryCache(upstream=HTTPXDownloader())
+client = LingueeClient(page_downloader=page_downloader, page_parser=XExtractParser())
 
 
-@app.get("/")
+@app.get("/", include_in_schema=False)
 def index():
     return RedirectResponse("/docs")
 
 
 @app.get(
-    "/translate",
+    "/api/v2/translate",
     status_code=status.HTTP_200_OK,
     responses={
         status.HTTP_200_OK: {"model": list[LingueePage.Lemma]},
@@ -28,8 +35,8 @@ async def translate(
     query: str,
     src: LanguageCode,
     dst: LanguageCode,
-    guess_direction: bool,
     response: Response,
+    guess_direction: bool = False,
 ):
     """
     Translate the query between src and dst language.
@@ -51,7 +58,7 @@ async def translate(
 
 
 @app.get(
-    "/examples",
+    "/api/v2/examples",
     status_code=status.HTTP_200_OK,
     responses={
         status.HTTP_200_OK: {"model": list[LingueePage.Example]},
@@ -79,7 +86,7 @@ async def examples(
 
 
 @app.get(
-    "/external_sources",
+    "/api/v2/external_sources",
     status_code=status.HTTP_200_OK,
     responses={
         status.HTTP_200_OK: {"model": list[LingueePage.ExternalSource]},

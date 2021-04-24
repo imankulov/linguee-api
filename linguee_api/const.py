@@ -56,3 +56,22 @@ LANGUAGES = {
     "ZH": "chinese",
 }
 MAX_REDIRECTS = 5
+PROJECT_DESCRIPTION = """
+<p>
+    <a href="https://linguee.com" target="_blank">Linguee</a> provides excellent
+    dictionary and translation memory service. Unfortunately, there is no way you
+    can get automated access to it. Linguee API fixes the problem. It acts as a
+    proxy and converts their HTML responses to easy-to-use JSON API.
+</p>
+<p>
+    This installation is an example. If you want to have reliable service, install
+    it yourself. The source code and installation instructions are available at
+    <a href="https://github.com/imankulov/linguee-api"
+    >github.com/imankulov/linguee-api</a>.
+</p>
+<p>
+    For any questions, ideas or bug reports, fill in
+    <a href="https://github.com/imankulov/linguee-api/issues" target="_blank">
+    the issue at GitHub</a>.
+</p>
+"""
