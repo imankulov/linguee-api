@@ -2,25 +2,32 @@
 
 [Linguee](https://linguee.com) provides excellent dictionary and translation memory service. Unfortunately, there is no way you can get automated access to it. Linguee API fixes the problem. It acts as a proxy and converts their HTML responses to easy-to-use JSON API.
 
-## API endpoint
+## API endpoints
 
-Proxy provides a single API endpoint at `GET /api`. Accepted arguments:
+The proxy provides three API endpoints: for translations, for examples, and external sources.
 
-- `q`: query string, word, or text to translate
-- `src`: source language (as a two-letter code)
-- `dst`: target language (as a two-letter code)
+![Linguee API](./docs/linguee-api.png)
+
+The API documentation and the playground is available for the sample installation:
+
+- [Documentation and API playground](https://linguee-api-v2.herokuapp.com/docs)
+- [The same documentation, but formatted with ReDoc](https://linguee-api-v2.herokuapp.com/redoc)
 
 ## Sample installation
 
-Sample installation is available at https://linguee-api.herokuapp.com. That's how you translate the word "bacalhau" from Portuguese to English: https://linguee-api.herokuapp.com/api?q=bacalhau&src=pt&dst=en.
+Sample installation is available at https://linguee-api-v2.herokuapp.com.
+
+- Get translations of the word "bacalhau" from Portuguese to English: [https://linguee-api-v2.herokuapp.com/api/v2/translate?query=bacalhau&src=pt&dst=en](https://linguee-api-v2.herokuapp.com/api/v2/translate?query=bacalhau&src=pt&dst=en).
+- Get a list of curated examples: [https://linguee-api-v2.herokuapp.com/api/v2/examples?query=bacalhau&src=pt&dst=en](https://linguee-api-v2.herokuapp.com/api/v2/examples?query=bacalhau&src=pt&dst=en).
+- Get examples from external sources: [https://linguee-api-v2.herokuapp.com/api/v2/external_sources?query=bacalhau&src=pt&dst=en](https://linguee-api-v2.herokuapp.com/api/v2/examples?query=bacalhau&src=pt&dst=en).
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
+
 ## Supported languages
 
-API supports all languages, supported by Linguee. As in Linguee, not all language pairs are valid though. Supported languages:
+API supports all the languages, supported by Linguee. As in Linguee, not all language pairs are valid though. Supported languages:
 `bg` (Bulgarian), `cs` (Czech), `da` (Danish), `de` (German), `el` (Greek), `en` (English), `es` (Spanish), `et` (Estonian), `fi` (Finnish), `fr` (French), `hu` (Hungarian), `it` (Italian), `ja` (Japan),`lt` (Lithuanian), `lv` (Latvian), `mt` (Maltese), `nl` (Dutch), `pl` (Polish), `pt` (Portuguese), `ro` (Romanian), `ru` (Russian), `sk` (Slovak), `sl` (Solvene), `sv` (Swedish), `zh` (Chinese).
-
 
 ## Response structure
 
