@@ -6,7 +6,7 @@ from furl import furl
 
 from linguee_api.utils import read_text
 
-DEFAULT_EXAMPLES_DIRECTORY = pathlib.Path(__file__).parents[1] / "tests" / "examples"
+DEFAULT_EXAMPLES_DIRECTORY = pathlib.Path(__file__).parents[1] / "examples"
 
 
 class DownloaderError(Exception):
@@ -21,6 +21,12 @@ class IDownloader(abc.ABC):
 
 
 class HTTPXDownloader(IDownloader):
+    """
+    Real downloader.
+
+    Sends request to linguee.com to read the page.
+    """
+
     async def download(self, url: str) -> str:
         async with httpx.AsyncClient() as client:
             try:
@@ -35,6 +41,12 @@ class HTTPXDownloader(IDownloader):
 
 
 class ExampleDownloader(IDownloader):
+    """
+    Fake downloader.
+
+    Reads data from "examples" directory.
+    """
+
     def __init__(self, examples_directory: pathlib.Path = DEFAULT_EXAMPLES_DIRECTORY):
         self.examples_directory = examples_directory
         if not self.examples_directory.is_dir():

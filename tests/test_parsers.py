@@ -10,7 +10,7 @@ from linguee_api.utils import read_text
 
 @pytest.fixture
 def examples_dir() -> pathlib.Path:
-    return pathlib.Path(__file__).parent / "examples"
+    return pathlib.Path(__file__).parents[1] / "examples"
 
 
 @pytest.mark.parametrize(
