@@ -55,6 +55,12 @@ In addition to lemmas, the API returns several usage examples curated by diction
 
 On top of curated examples, Linguee provides links to external sources. The API returns objects containing the phrase snipped in the original language and an equivalent snippet in the translation.
 
+## Wait, Python? What happened to the Golang version?
+
+I wrote the first version of the proxy in Go. I quickly learned that having a project in a language that I'm not totally fluent, makes me feel less enthusiastic about the development. Eventually, I decided to scratch it and create the second version in Python and FastAPI.
+
+The code for the previous Golang version is still available [in a separate branch](https://github.com/imankulov/linguee-api/tree/golang).
+
 
 ## Terms and Conditions
 
