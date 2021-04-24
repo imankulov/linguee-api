@@ -1,4 +1,6 @@
+import sentry_sdk
 from fastapi import FastAPI, Response, status
+from sentry_sdk.integrations.asgi import SentryAsgiMiddleware
 from starlette.responses import RedirectResponse
 
 from linguee_api.const import PROJECT_DESCRIPTION, LanguageCode
@@ -7,13 +9,15 @@ from linguee_api.linguee_client import LingueeClient
 from linguee_api.parsers import XExtractParser
 from linguee_api.schema import LingueePage, ParseError
 
-description = ""
+sentry_sdk.init()
 
 app = FastAPI(
     title="Linguee API",
     description=PROJECT_DESCRIPTION,
     version="2.0.0",
 )
+app.add_middleware(SentryAsgiMiddleware)
+
 page_downloader = MemoryCache(upstream=HTTPXDownloader())
 client = LingueeClient(page_downloader=page_downloader, page_parser=XExtractParser())
 
