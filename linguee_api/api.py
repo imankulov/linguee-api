@@ -69,8 +69,8 @@ async def examples(
     query: str,
     src: LanguageCode,
     dst: LanguageCode,
-    guess_direction: bool,
     response: Response,
+    guess_direction: bool = False,
 ):
     """Provide translation examples."""
     result = await client.process(
@@ -97,8 +97,8 @@ async def external_sources(
     query: str,
     src: LanguageCode,
     dst: LanguageCode,
-    guess_direction: bool,
     response: Response,
+    guess_direction: bool = False,
 ):
     """Provide translation examples from external (unverified) sources."""
     result = await client.process(
