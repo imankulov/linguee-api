@@ -16,7 +16,7 @@ class AudioLink(BaseModel):
     lang: str = Field(example="Brazilian Portuguese")
 
 
-class LingueePage(BaseModel):
+class SearchResult(BaseModel):
     """The root structure of parsed API response."""
 
     class Lemma(BaseModel):
@@ -79,7 +79,24 @@ class LingueePage(BaseModel):
     external_sources: list[ExternalSource]
 
 
-class LingueeCorrection(BaseModel):
+class Autocompletions(BaseModel):
+    """The root structure of the API response for auto-completions."""
+
+    class AutocompletionItem(BaseModel):
+        """Information about one word."""
+
+        class TranslationItem(BaseModel):
+            text: str = Field(example="cat")
+            pos: Optional[str] = Field(example="n")
+
+        text: str = Field(example="Katze")
+        pos: Optional[str] = Field(example="f")
+        translations: list[TranslationItem]
+
+    autocompletions: list[AutocompletionItem]
+
+
+class Correction(BaseModel):
     """
     A redirect to the correct form.
 
@@ -90,7 +107,7 @@ class LingueeCorrection(BaseModel):
     correction: str
 
 
-class LingueeNotFound(BaseModel):
+class NotFound(BaseModel):
     """
     LemmaTranslation not found.
 
@@ -106,4 +123,5 @@ class ParseError(BaseModel):
     message: str
 
 
-ParseResult = Union[ParseError, LingueeCorrection, LingueePage, LingueeNotFound]
+SearchResultOrError = Union[SearchResult, ParseError, Correction, NotFound]
+AutocompletionsOrError = Union[Autocompletions, ParseError]
