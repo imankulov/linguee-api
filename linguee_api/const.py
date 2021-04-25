@@ -1,7 +1,9 @@
+import pathlib
 from typing import Literal
 
+PROJECT_ROOT = pathlib.Path(__file__).parents[1]
 USER_AGENT = "Linguee API proxy (https://github.com/imankulov/linguee-api)"
-LanguageCode = Literal[
+LANGUAGE_CODE = Literal[
     "bg",
     "cs",
     "da",

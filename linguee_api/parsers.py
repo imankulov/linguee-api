@@ -4,28 +4,34 @@ from typing import Optional
 
 from xextract import Group, String
 
-from linguee_api.schema import (
-    LingueeCorrection,
-    LingueeNotFound,
-    LingueePage,
-    ParseResult,
+from linguee_api.models import (
+    Autocompletions,
+    AutocompletionsOrError,
+    Correction,
+    NotFound,
+    SearchResult,
+    SearchResultOrError,
 )
 
 
 class IParser(abc.ABC):
     @abc.abstractmethod
-    def parse(self, page_html: str) -> ParseResult:
+    def parse_search_result(self, page_html: str) -> SearchResultOrError:
+        ...
+
+    @abc.abstractmethod
+    def parse_autocompletions(self, page_html: str) -> AutocompletionsOrError:
         ...
 
 
 class XExtractParser(IParser):
-    def parse(self, page_html: str) -> ParseResult:
+    def parse_search_result(self, page_html: str) -> SearchResultOrError:
         if self.is_not_found(page_html):
             correction = self.find_correction(page_html)
             if correction:
-                return LingueeCorrection(correction=correction)
-            return LingueeNotFound()
-        return self.parse_to_page(page_html)
+                return Correction(correction=correction)
+            return NotFound()
+        return self.parse_search_result_to_page(page_html)
 
     def is_not_found(self, page_html: str) -> bool:
         """Return True if the page is a NOT FOUND page."""
@@ -38,13 +44,19 @@ class XExtractParser(IParser):
             return corrections[0]
         return None
 
-    def parse_to_page(self, page_html: str) -> LingueePage:
-        parsed_result = self.parse_to_dict(page_html)
-        return LingueePage(**parsed_result)
+    def parse_search_result_to_page(self, page_html: str) -> SearchResult:
+        parsed_result = self.parse_search_result_to_dict(page_html)
+        return SearchResult(**parsed_result)
 
-    def parse_to_dict(self, page_html: str) -> dict:
+    def parse_search_result_to_dict(self, page_html: str) -> dict:
+        return search_result_schema.parse(page_html)
 
-        return page_schema.parse(page_html)
+    def parse_autocompletions(self, page_html: str) -> AutocompletionsOrError:
+        parsed_result = self.parse_autocompletions_to_dict(page_html)
+        return Autocompletions(**parsed_result)
+
+    def parse_autocompletions_to_dict(self, page_html: str) -> dict:
+        return autocompletions_schema.parse(page_html)
 
 
 def is_featured(classname):
@@ -163,7 +175,7 @@ lemma_schema = [
     ),
 ]
 
-page_schema = Group(
+search_result_schema = Group(
     quant=1,
     children=[
         String(name="src_lang", css="div#data", attr="data-lang1", quant=1),
@@ -220,5 +232,47 @@ page_schema = Group(
                 ),
             ],
         ),
+    ],
+)
+
+
+autocompletions_schema = Group(
+    quant=1,
+    children=[
+        Group(
+            quant="*",
+            css="div.autocompletion_item",
+            name="autocompletions",
+            children=[
+                String(
+                    name="text",
+                    css="div.main_row > div.main_item",
+                    quant=1,
+                    callback=normalize,
+                ),
+                String(
+                    name="pos",
+                    css="div.main_row > div.main_wordtype",
+                    quant=1,
+                    callback=normalize,
+                ),
+                Group(
+                    quant="+",
+                    name="translations",
+                    css="div.translation_row > div > div.translation_item",
+                    children=[
+                        String(
+                            name="text", xpath="self::*", quant=1, callback=normalize
+                        ),
+                        String(
+                            name="pos",
+                            css="div.translation_item > div.wordtype",
+                            quant="?",
+                            callback=normalize,
+                        ),
+                    ],
+                ),
+            ],
+        )
     ],
 )

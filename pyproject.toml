@@ -22,7 +22,6 @@ xextract = "^0.1.8"
 httpx = "^0.17.1"
 chardet = "^4.0.0"
 uvicorn = "^0.13.4"
-furl = "^2.1.2"
 sentry-sdk = "^1.0.0"
 
 [tool.poetry.dev-dependencies]
@@ -35,6 +34,7 @@ import-linter = "^1.2.1"
 pytest-asyncio = "^0.14.0"
 ipython = "^7.22.0"
 click = "^7.1.2"
+asgiref = "^3.3.4"
 
 [tool.coverage.run]
 source = ["tests", "linguee_api"]

@@ -3,7 +3,8 @@ import string
 
 import pytest
 
-from linguee_api.downloaders import DownloaderError, HTTPXDownloader
+from linguee_api.downloaders.httpx_downloader import HTTPXDownloader
+from linguee_api.downloaders.interfaces import DownloaderError
 
 
 @pytest.mark.asyncio
