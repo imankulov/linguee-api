@@ -28,14 +28,14 @@ def index():
 
 
 @app.get(
-    "/api/v2/translate",
+    "/api/v2/translations",
     status_code=status.HTTP_200_OK,
     responses={
         status.HTTP_200_OK: {"model": list[LingueePage.Lemma]},
         status.HTTP_500_INTERNAL_SERVER_ERROR: {"model": ParseError},
     },
 )
-async def translate(
+async def translations(
     query: str,
     src: LanguageCode,
     dst: LanguageCode,

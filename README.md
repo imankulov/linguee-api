@@ -17,7 +17,7 @@ The API documentation and the playground is available for the sample installatio
 
 Sample installation is available at https://linguee-api-v2.herokuapp.com.
 
-- Get translations of the word "bacalhau" from Portuguese to English: [https://linguee-api-v2.herokuapp.com/api/v2/translate?query=bacalhau&src=pt&dst=en](https://linguee-api-v2.herokuapp.com/api/v2/translate?query=bacalhau&src=pt&dst=en).
+- Get translations of the word "bacalhau" from Portuguese to English: [https://linguee-api-v2.herokuapp.com/api/v2/translations?query=bacalhau&src=pt&dst=en](https://linguee-api-v2.herokuapp.com/api/v2/translate?query=bacalhau&src=pt&dst=en).
 - Get a list of curated examples: [https://linguee-api-v2.herokuapp.com/api/v2/examples?query=bacalhau&src=pt&dst=en](https://linguee-api-v2.herokuapp.com/api/v2/examples?query=bacalhau&src=pt&dst=en).
 - Get examples from external sources: [https://linguee-api-v2.herokuapp.com/api/v2/external_sources?query=bacalhau&src=pt&dst=en](https://linguee-api-v2.herokuapp.com/api/v2/examples?query=bacalhau&src=pt&dst=en).
 
