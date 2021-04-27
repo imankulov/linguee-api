@@ -65,3 +65,13 @@ async def test_parse_to_dict_should_return_parseable_result(
     url = get_search_url(query=query, src=src, dst=dst, guess_direction=False)
     page = await examples_downloader.download(url)
     XExtractParser().parse_search_result_to_page(page)
+
+
+@pytest.mark.asyncio
+async def test_parser_should_find_grammar_info_in_german_verbs(
+    examples_downloader: FileCache,
+):
+    url = get_search_url(query="bringen", src="de", dst="en", guess_direction=False)
+    page_html = await examples_downloader.download(url)
+    page = XExtractParser().parse_search_result_to_page(page_html)
+    assert page.lemmas[0].grammar_info == "Akk"

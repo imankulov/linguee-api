@@ -33,6 +33,7 @@ class SearchResult(BaseModel):
         featured: bool = Field(example=False)
         text: str = Field(example="obrigado")
         pos: Optional[str] = Field(example="interjection")
+        grammar_info: Optional[str] = Field(example="Akk")
         audio_links: Optional[list[AudioLink]]
         translations: list[Translation]
 
