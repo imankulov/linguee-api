@@ -133,6 +133,15 @@ lemma_schema = [
         callback=normalize,
     ),
     String(
+        name="grammar_info",
+        css=(
+            "span.tag_lemma > span.tag_lemma_context > "
+            "span.placeholder > span.grammar_info"
+        ),
+        quant="?",
+        callback=normalize,
+    ),
+    String(
         name="audio_links",
         quant="?",
         css="span.tag_lemma > a.audio",
