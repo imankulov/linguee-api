@@ -35,6 +35,7 @@ class LingueeClient:
         dst_lang_code: LANGUAGE_CODE,
         guess_direction: bool,
     ) -> Union[SearchResult, ParseError]:
+
         url = get_search_url(
             query=query,
             src=src_lang_code,

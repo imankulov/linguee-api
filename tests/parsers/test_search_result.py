@@ -12,6 +12,7 @@ from linguee_api.parsers import XExtractParser
     ["query", "src", "dst", "is_not_found"],
     [
         ("constibado", "pt", "en", True),
+        ("Möglichkei", "de", "en", False),  # At least, there are examples
         ("esgotar", "pt", "en", False),
         ("not bad", "en", "pt", False),
         ("xxxxzzzz", "pt", "en", True),
@@ -31,18 +32,28 @@ async def test_parser_should_detect_not_found(
 
 
 @pytest.mark.parametrize(
-    ["query", "correction"],
+    ["query", "src", "dst", "correction"],
     [
-        ("constibado", "constipado"),
-        ("esgotar", None),
-        ("xxxxzzzz", None),
+        ("constibado", "pt", "en", "constipado"),
+        (
+            "Möglichkei",
+            "de",
+            "en",
+            "möglichkeit",
+        ),  # Despite having examples, Linguee provides a correction.
+        ("esgotar", "pt", "en", None),
+        ("xxxxzzzz", "pt", "en", None),
     ],
 )
 @pytest.mark.asyncio
 async def test_parser_should_find_correction(
-    examples_downloader: FileCache, query: str, correction: Optional[str]
+    examples_downloader: FileCache,
+    query: str,
+    src: LANGUAGE_CODE,
+    dst: LANGUAGE_CODE,
+    correction: Optional[str],
 ):
-    url = get_search_url(query=query, src="pt", dst="en", guess_direction=False)
+    url = get_search_url(query=query, src=src, dst=dst, guess_direction=False)
     page = await examples_downloader.download(url)
     assert XExtractParser().find_correction(page) == correction
 
@@ -51,6 +62,11 @@ async def test_parser_should_find_correction(
     ["query", "src", "dst"],
     [
         ("esgotar", "pt", "en"),
+        (
+            "Möglichkei",
+            "de",
+            "en",
+        ),  # The page only has external sources
         ("obrigado", "pt", "en"),
         ("not bad", "en", "pt"),
         ("einfach", "de", "en"),

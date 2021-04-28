@@ -220,7 +220,7 @@ search_result_schema = Group(
             quant=1,
         ),
         Group(
-            quant="+",
+            quant="*",
             css="div.exact > div.lemma",
             name="lemmas",
             children=lemma_schema,
