@@ -184,6 +184,29 @@ lemma_schema = [
     ),
 ]
 
+source_url_schema = [
+    String(
+        name="src_url",
+        css="div.source_url > a",
+        attr="href",
+        quant="?",
+    ),
+    String(
+        name="src_url_text",
+        css="div.source_url",
+        quant="?",
+    ),
+]
+
+
+def normalize_source_url(content):
+    if content["src_url"]:
+        return content["src_url"]
+    if content["src_url_text"]:
+        return f"http://{content['src_url_text']}"
+    return None
+
+
 search_result_schema = Group(
     quant=1,
     children=[
@@ -227,17 +250,19 @@ search_result_schema = Group(
                     attr="_all_text",
                     callback=normalize_example,
                 ),
-                String(
+                Group(
                     name="src_url",
-                    css="td.left > div.wrap > div.source_url > a",
-                    attr="href",
                     quant=1,
+                    css="td.left",
+                    children=source_url_schema,
+                    callback=normalize_source_url,
                 ),
-                String(
+                Group(
                     name="dst_url",
-                    css="td.right2 > div.wrap > div.source_url > a",
-                    attr="href",
                     quant=1,
+                    css="td.right2",
+                    children=source_url_schema,
+                    callback=normalize_source_url,
                 ),
             ],
         ),

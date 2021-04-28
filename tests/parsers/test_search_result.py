@@ -53,6 +53,8 @@ async def test_parser_should_find_correction(
         ("esgotar", "pt", "en"),
         ("obrigado", "pt", "en"),
         ("not bad", "en", "pt"),
+        ("einfach", "de", "en"),
+        ("Tisch", "de", "en"),
     ],
 )
 @pytest.mark.asyncio
@@ -75,3 +77,15 @@ async def test_parser_should_find_grammar_info_in_german_verbs(
     page_html = await examples_downloader.download(url)
     page = XExtractParser().parse_search_result_to_page(page_html)
     assert page.lemmas[0].grammar_info == "Akk"
+
+
+@pytest.mark.asyncio
+async def test_parser_should_process_examples_without_links(
+    examples_downloader: FileCache,
+):
+    url = get_search_url(query="einfach", src="de", dst="en", guess_direction=False)
+    page_html = await examples_downloader.download(url)
+    page = XExtractParser().parse_search_result_to_page(page_html)
+    sources = page.external_sources
+    assert all([s.src_url.startswith("http") for s in sources])
+    assert all([s.dst_url.startswith("http") for s in sources])

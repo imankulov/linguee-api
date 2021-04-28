@@ -16,6 +16,8 @@ download_urls = [
     get_search_url(query="xxxxzzzz", src="pt", dst="en", guess_direction=False),
     get_search_url(query="not bad", src="en", dst="pt", guess_direction=False),
     get_search_url(query="bringen", src="de", dst="en", guess_direction=False),
+    get_search_url(query="einfach", src="de", dst="en", guess_direction=False),
+    get_search_url(query="Tisch", src="de", dst="en", guess_direction=False),
     get_autocompletions_url(query="katz", src="de", dst="en"),
 ]
 
