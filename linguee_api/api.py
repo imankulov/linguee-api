@@ -3,7 +3,8 @@ from fastapi import FastAPI, Response, status
 from sentry_sdk.integrations.asgi import SentryAsgiMiddleware
 from starlette.responses import RedirectResponse
 
-from linguee_api.const import LANGUAGE_CODE, PROJECT_DESCRIPTION, PROJECT_ROOT
+from linguee_api.config import settings
+from linguee_api.const import LANGUAGE_CODE, PROJECT_DESCRIPTION
 from linguee_api.downloaders.file_cache import FileCache
 from linguee_api.downloaders.httpx_downloader import HTTPXDownloader
 from linguee_api.downloaders.memory_cache import MemoryCache
@@ -11,8 +12,7 @@ from linguee_api.linguee_client import LingueeClient
 from linguee_api.models import Autocompletions, ParseError, SearchResult
 from linguee_api.parsers import XExtractParser
 
-sentry_sdk.init()
-
+sentry_sdk.init(dsn=settings.sentry_dsn, environment=settings.sentry_environment)
 app = FastAPI(
     title="Linguee API",
     description=PROJECT_DESCRIPTION,
@@ -22,7 +22,7 @@ app.add_middleware(SentryAsgiMiddleware)
 
 page_downloader = MemoryCache(
     upstream=FileCache(
-        cache_directory=PROJECT_ROOT / ".cache", upstream=HTTPXDownloader()
+        cache_directory=settings.cache_directory, upstream=HTTPXDownloader()
     )
 )
 client = LingueeClient(page_downloader=page_downloader, page_parser=XExtractParser())
