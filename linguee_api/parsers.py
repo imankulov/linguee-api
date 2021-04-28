@@ -26,11 +26,14 @@ class IParser(abc.ABC):
 
 class XExtractParser(IParser):
     def parse_search_result(self, page_html: str) -> SearchResultOrError:
+        # check if the page is correction
+        correction = self.find_correction(page_html)
+        if correction:
+            return Correction(correction=correction)
+        # check if the page is a not found page without any correction
         if self.is_not_found(page_html):
-            correction = self.find_correction(page_html)
-            if correction:
-                return Correction(correction=correction)
             return NotFound()
+        # assume it's a valid result
         return self.parse_search_result_to_page(page_html)
 
     def is_not_found(self, page_html: str) -> bool:
