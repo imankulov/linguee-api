@@ -57,8 +57,8 @@ async def translations(
     """
     result = await client.process_search_result(
         query=query,
-        src_lang_code=src,
-        dst_lang_code=dst,
+        src=src,
+        dst=dst,
         guess_direction=guess_direction,
     )
     if isinstance(result, ParseError):
@@ -85,8 +85,8 @@ async def examples(
     """Provide translation examples."""
     result = await client.process_search_result(
         query=query,
-        src_lang_code=src,
-        dst_lang_code=dst,
+        src=src,
+        dst=dst,
         guess_direction=guess_direction,
     )
     if isinstance(result, ParseError):
@@ -113,8 +113,8 @@ async def external_sources(
     """Provide translation examples from external (unverified) sources."""
     result = await client.process_search_result(
         query=query,
-        src_lang_code=src,
-        dst_lang_code=dst,
+        src=src,
+        dst=dst,
         guess_direction=guess_direction,
     )
     if isinstance(result, ParseError):

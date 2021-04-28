@@ -1,6 +1,8 @@
 from typing import Union
 from urllib.parse import urlencode
 
+from loguru import logger
+
 from linguee_api.const import LANGUAGE_CODE, LANGUAGES, MAX_REDIRECTS
 from linguee_api.downloaders.interfaces import DownloaderError, IDownloader
 from linguee_api.models import (
@@ -31,15 +33,17 @@ class LingueeClient:
         self,
         *,
         query: str,
-        src_lang_code: LANGUAGE_CODE,
-        dst_lang_code: LANGUAGE_CODE,
+        src: LANGUAGE_CODE,
+        dst: LANGUAGE_CODE,
         guess_direction: bool,
     ) -> Union[SearchResult, ParseError]:
-
+        logger.info(
+            f"Processing API request: {query=}, {src=}, {dst=}, {guess_direction=}"
+        )
         url = get_search_url(
             query=query,
-            src=src_lang_code,
-            dst=dst_lang_code,
+            src=src,
+            dst=dst,
             guess_direction=guess_direction,
         )
 
@@ -47,26 +51,37 @@ class LingueeClient:
             try:
                 page_html = await self.page_downloader.download(url)
             except DownloaderError as error:
+                logger.error(f"Error downloading URL: {error=}, {url=}")
                 return ParseError(message=str(error))
 
             parse_result = self.page_parser.parse_search_result(page_html)
             if isinstance(parse_result, ParseError):
+                logger.info(f"Parser returned parse error: {parse_result=}")
                 return parse_result
             elif isinstance(parse_result, Correction):
+                logger.info(f"Parser returned correction: {parse_result=}")
                 url = get_search_url(
                     query=parse_result.correction,
-                    src=src_lang_code,
-                    dst=dst_lang_code,
+                    src=src,
+                    dst=dst,
                     guess_direction=guess_direction,
                 )
             elif isinstance(parse_result, SearchResult):
+                logger.info(
+                    f"Parser returned search result: "
+                    f"{parse_result.query=}, "
+                    f"{len(parse_result.lemmas)=}, "
+                    f"{len(parse_result.examples)=}, "
+                    f"{len(parse_result.external_sources)=}"
+                )
                 return parse_result
             else:
+                logger.error(f"Unexpected API result: {parse_result=}")
                 raise RuntimeError(f"Unexpected API result: {parse_result}")
 
-        return ParseError(
-            message=f"Still redirecting after {self.max_redirects} redirects"
-        )
+        still_redirecting = f"Still redirecting after {self.max_redirects} redirects"
+        logger.error(still_redirecting)
+        return ParseError(message=still_redirecting)
 
     async def process_autocompletions(
         self,

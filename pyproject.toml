@@ -24,6 +24,7 @@ chardet = "^4.0.0"
 uvicorn = "^0.13.4"
 sentry-sdk = "^1.0.0"
 python-dotenv = "^0.17.0"
+loguru = "^0.5.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.1.2"

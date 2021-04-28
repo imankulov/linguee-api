@@ -11,6 +11,7 @@ from linguee_api.linguee_client import get_autocompletions_url, get_search_url
 
 download_urls = [
     get_search_url(query="constibado", src="pt", dst="en", guess_direction=False),
+    get_search_url(query="constipado", src="pt", dst="en", guess_direction=False),
     get_search_url(query="esgotar", src="pt", dst="en", guess_direction=False),
     get_search_url(query="obrigado", src="pt", dst="en", guess_direction=False),
     get_search_url(query="xxxxzzzz", src="pt", dst="en", guess_direction=False),
