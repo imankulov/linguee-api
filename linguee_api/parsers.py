@@ -1,5 +1,4 @@
 import abc
-import re
 from typing import Optional
 
 from xextract import Group, String
@@ -12,6 +11,7 @@ from linguee_api.models import (
     SearchResult,
     SearchResultOrError,
 )
+from linguee_api.parser_utils import concat_values, normalize
 
 
 class IParser(abc.ABC):
@@ -64,10 +64,6 @@ class XExtractParser(IParser):
 
 def is_featured(classname):
     return "featured" in classname
-
-
-def normalize(text):
-    return re.sub(r"\s+", " ", text).strip()
 
 
 def normalize_example(text):
@@ -129,11 +125,13 @@ lemma_schema = [
             ),
         ],
     ),
-    String(
-        name="pos",
-        css="span.tag_lemma > span.tag_wordtype, span.tag_lemma > span.tag_type",
-        quant="?",
-        callback=normalize,
+    concat_values(
+        "pos",
+        String(
+            name="pos",
+            css="span.tag_lemma > span.tag_wordtype, span.tag_lemma > span.tag_type",
+            quant="*",
+        ),
     ),
     String(
         name="grammar_info",
@@ -169,12 +167,14 @@ lemma_schema = [
                 quant=1,
                 callback=normalize,
             ),
-            String(
-                name="pos",
-                css="span.tag_type",
-                quant="?",
-                attr="title",
-                callback=normalize,
+            concat_values(
+                "pos",
+                String(
+                    name="pos",
+                    css="span.tag_type",
+                    quant="*",
+                    attr="title",
+                ),
             ),
             String(
                 name="audio_links",
@@ -287,11 +287,13 @@ autocompletions_schema = Group(
                     quant=1,
                     callback=normalize,
                 ),
-                String(
-                    name="pos",
-                    css="div.main_row > div.main_wordtype",
-                    quant=1,
-                    callback=normalize,
+                concat_values(
+                    "pos",
+                    String(
+                        name="pos",
+                        css="div.main_row > div.main_wordtype",
+                        quant="*",
+                    ),
                 ),
                 Group(
                     quant="+",
@@ -301,11 +303,13 @@ autocompletions_schema = Group(
                         String(
                             name="text", xpath="self::*", quant=1, callback=normalize
                         ),
-                        String(
-                            name="pos",
-                            css="div.translation_item > div.wordtype",
-                            quant="?",
-                            callback=normalize,
+                        concat_values(
+                            "pos",
+                            String(
+                                name="pos",
+                                css="div.translation_item > div.wordtype",
+                                quant="*",
+                            ),
                         ),
                     ],
                 ),
