@@ -31,6 +31,24 @@ async def test_parser_should_detect_not_found(
     assert XExtractParser().is_not_found(page) == is_not_found
 
 
+@pytest.mark.asyncio
+async def test_parser_should_find_translation_examples(
+    examples_downloader: FileCache,
+):
+    url = get_search_url(query="obrigado", src="pt", dst="en", guess_direction=False)
+    page_html = await examples_downloader.download(url)
+    page = XExtractParser().parse_search_result_to_page(page_html)
+    examples_of_1st_translation = page.lemmas[0].translations[0].examples
+    assert examples_of_1st_translation is not None
+    assert len(examples_of_1st_translation) == 1
+    assert examples_of_1st_translation[0].src == (
+        "Obrigado por sua participação em nossa pesquisa."
+    )
+    assert examples_of_1st_translation[0].dst == (
+        "Thank you for your participation in our survey."
+    )
+
+
 @pytest.mark.parametrize(
     ["query", "src", "dst", "correction"],
     [

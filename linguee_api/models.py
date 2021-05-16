@@ -25,10 +25,24 @@ class SearchResult(BaseModel):
         class Translation(BaseModel):
             """One of the possible translation of the term."""
 
+            class TranslationExample(BaseModel):
+                """A translation example."""
+
+                src: str = Field(
+                    example=(
+                        "Estou obrigado pelo contrato a "
+                        "trabalhar seis horas por dia."
+                    )
+                )
+                dst: str = Field(
+                    example="I am bound by the contract to work six hours a day."
+                )
+
             featured: bool = Field(example=False)
             text: str = Field(example="required")
             pos: Optional[str] = Field(example="adjective / past participle, masculine")
             audio_links: Optional[list[AudioLink]]
+            examples: Optional[list[TranslationExample]]
 
         featured: bool = Field(example=False)
         text: str = Field(example="obrigado")

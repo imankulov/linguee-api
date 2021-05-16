@@ -183,6 +183,15 @@ lemma_schema = [
                 attr="onclick",
                 callback=parse_audio_links,
             ),
+            Group(
+                name="examples",
+                css=".example_lines > .example",
+                quant="*",
+                children=[
+                    String(name="src", css=".tag_s", quant=1, callback=normalize),
+                    String(name="dst", css=".tag_t", quant=1, callback=normalize),
+                ],
+            ),
         ],
     ),
 ]
