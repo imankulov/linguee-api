@@ -11,7 +11,7 @@ from linguee_api.models import (
     SearchResult,
     SearchResultOrError,
 )
-from linguee_api.parser_utils import concat_values, normalize
+from linguee_api.parser_utils import concat_values, normalize, take_first_item
 
 
 class IParser(abc.ABC):
@@ -133,14 +133,23 @@ lemma_schema = [
             quant="*",
         ),
     ),
-    String(
+    # We parse text as a group, because grammar_info may have zero or more elements.
+    # and we care about the first record only
+    Group(
         name="grammar_info",
-        css=(
-            "span.tag_lemma > span.tag_lemma_context > "
-            "span.placeholder > span.grammar_info"
-        ),
-        quant="?",
-        callback=normalize,
+        quant=1,
+        callback=take_first_item,
+        children=[
+            String(
+                name="item",
+                quant="*",
+                callback=normalize,
+                css=(
+                    "span.tag_lemma > span.tag_lemma_context > "
+                    "span.placeholder > span.grammar_info"
+                ),
+            )
+        ],
     ),
     String(
         name="audio_links",

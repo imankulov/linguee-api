@@ -1,5 +1,5 @@
 import re
-from typing import Any
+from typing import Any, Optional
 
 from xextract import Group
 from xextract.parsers import BaseNamedParser
@@ -36,3 +36,10 @@ def normalize(text: str) -> str:
     For example "  foo   bar " is converted to "foo bar".
     """
     return re.sub(r"\s+", " ", text).strip()
+
+
+def take_first_item(variants) -> Optional[str]:
+    """Take the first item variant and normalize."""
+    if not variants["item"]:
+        return None
+    return variants["item"][0]
