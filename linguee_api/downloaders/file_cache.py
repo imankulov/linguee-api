@@ -2,7 +2,6 @@ import pathlib
 import urllib.parse
 
 from linguee_api.downloaders.interfaces import IDownloader
-from linguee_api.utils import read_text
 
 
 class FileCache(IDownloader):
@@ -17,8 +16,8 @@ class FileCache(IDownloader):
         page_file = self.get_page_file(url)
         if not page_file.is_file():
             page = await self.upstream.download(url)
-            page_file.write_text(page)
-        return read_text(page_file)
+            page_file.write_text(page, encoding="utf-8")
+        return page_file.read_text(encoding="utf-8")
 
     def get_page_file(self, url: str) -> pathlib.Path:
         return self.cache_directory / urllib.parse.quote(url, safe="")

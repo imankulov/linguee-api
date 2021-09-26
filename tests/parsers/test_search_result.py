@@ -90,6 +90,8 @@ async def test_parser_should_find_correction(
         ("einfach", "de", "en"),
         ("Tisch", "de", "en"),
         ("wünschen", "de", "en"),
+        ("envisage", "en", "zh"),
+        ("envisage", "en", "sv"),
     ],
 )
 @pytest.mark.asyncio

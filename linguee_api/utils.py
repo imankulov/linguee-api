@@ -1,14 +1,4 @@
 import importlib
-import pathlib
-
-import chardet
-
-
-def read_text(path: pathlib.Path) -> str:
-    """Read text from a file."""
-    content = path.read_bytes()
-    encoding = chardet.detect(content)["encoding"]
-    return content.decode(encoding)
 
 
 def import_string(import_name: str):
