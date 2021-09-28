@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## UNRELEASED
+## 2.2.0 (2021-09-28)
 
 - Fixed a bug with multiple grammar infos (#12).
 - Fixed a file cache issue on the Windows platform (#16).

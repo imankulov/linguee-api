@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "linguee-api"
-version = "2.1.0"
+version = "2.2.0"
 description = "Linguee API"
 readme = "README.md"
 homepage = "https://github.com/imankulov/linguee-api"
