@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## UNRELEASED
 
 - Fixed a bug with multiple grammar infos (#12).
+- Fixed a file cache issue on the Windows platform (#16).
 - Updated all dependencies to their latest versions.
 
 ## 2.1.0 (2021-05-16)
