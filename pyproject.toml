@@ -15,7 +15,7 @@ include = [
 ]
 
 [tool.poetry.dependencies]
-python = "3.9.5"
+python = "3.9.12"
 fastapi = "^0.65.2"
 pydantic = "^1.8.1"
 xextract = "^0.1.8"

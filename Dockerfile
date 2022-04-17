@@ -1,4 +1,4 @@
-FROM python:3.9.5
+FROM python:3.9.12
 
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 
