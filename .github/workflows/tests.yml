@@ -6,11 +6,8 @@ jobs:
   build-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
-      - name: Set up Python
-        uses: actions/setup-python@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
         with:
           python-version: "3.9"
       - name: Install dependencies
@@ -24,7 +21,6 @@ jobs:
         run: |
           set -ex
           $HOME/.poetry/bin/poetry run coverage run -m pytest
-
       - name: Convert coverage to XML
         run: |
           set -ex
