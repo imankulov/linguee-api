@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## UNRELEASED
+
+- Update development dependencies and pre-commit hooks
+- Provide usage examples for Python and Bash
+
 ## 2.2.0 (2021-09-28)
 
 - Fixed a bug with multiple grammar infos (#12).

@@ -17,7 +17,7 @@ The API documentation and the playground is available for the sample installatio
 
 Sample installation is available at https://linguee-api-v2.herokuapp.com.
 
-- Get translations of the word "bacalhau" from Portuguese to English: [https://linguee-api-v2.herokuapp.com/api/v2/translations?query=bacalhau&src=pt&dst=en](https://linguee-api-v2.herokuapp.com/api/v2/translate?query=bacalhau&src=pt&dst=en).
+- Get translations of the word "bacalhau" from Portuguese to English: [https://linguee-api-v2.herokuapp.com/api/v2/translations?query=bacalhau&src=pt&dst=en](https://linguee-api-v2.herokuapp.com/api/v2/translations?query=bacalhau&src=pt&dst=en).
 - Get a list of curated examples: [https://linguee-api-v2.herokuapp.com/api/v2/examples?query=bacalhau&src=pt&dst=en](https://linguee-api-v2.herokuapp.com/api/v2/examples?query=bacalhau&src=pt&dst=en).
 - Get examples from external sources: [https://linguee-api-v2.herokuapp.com/api/v2/external_sources?query=bacalhau&src=pt&dst=en](https://linguee-api-v2.herokuapp.com/api/v2/examples?query=bacalhau&src=pt&dst=en).
 
@@ -55,12 +55,129 @@ In addition to lemmas, the API returns several usage examples curated by diction
 
 On top of curated examples, Linguee provides links to external sources. The API returns objects containing the phrase snipped in the original language and an equivalent snippet in the translation.
 
-## Wait, Python? What happened to the Golang version?
+## Usage examples with Python and requests
 
-I wrote the first version of the proxy in Go. I quickly learned that having a project in a language that I'm not totally fluent, makes me feel less enthusiastic about the development. Eventually, I decided to scratch it and create the second version in Python and FastAPI.
+Once installed on Heroku, Linguee API can be used as any other API service. I recommend using the [requests](https://docs.python-requests.org/) library.
 
-The code for the previous Golang version is still available [in a separate branch](https://github.com/imankulov/linguee-api/tree/golang).
+### Translate a word or a phrase from one language to another with Python
 
+A request to the sample API installation to translate the word "bacalhau" from Portuguese to English.
+
+```python
+import requests
+
+api_root = "https://linguee-api-v2.herokuapp.com/api/v2"
+resp = requests.get(f"{api_root}/translations", params={"query": "bacalhau", "src": "pt", "dst": "en"})
+for lemma in resp.json():
+    for translation in lemma['translations']:
+        print(f"{lemma['text']} -> {translation['text']}")
+```
+
+This will print:
+
+```
+bacalhau -> cod
+bacalhau -> codfish
+```
+
+### Provide translation examples with Python
+
+A request to the sample API installation to get all usage examples of "bacalhau" along with their translations.
+
+```python
+import requests
+
+api_root = "https://linguee-api-v2.herokuapp.com/api/v2"
+
+resp = requests.get(f"{api_root}/examples", params={"query": "bacalhau", "src": "pt", "dst": "en"})
+
+for example in resp.json():
+    for translation in example["translations"]:
+        print(f"{example['text']} -> {translation['text']}")
+```
+
+This will print:
+
+```
+bacalhau desfiado -> shredded cod
+lombo de bacalhau -> codfish fillet
+...
+bacalhau do Atlântico -> Atlantic cod
+```
+
+### Get access to real world usage examples with Python
+
+A request to the sample API installation to get all real-world usage examples of "bacalhau" along with their translations.
+
+```python
+import requests
+
+api_root = "https://linguee-api-v2.herokuapp.com/api/v2"
+
+resp = requests.get(f"{api_root}/external_sources", params={"query": "bacalhau", "src": "pt", "dst": "en"})
+for source in resp.json():
+    print(f"{source['src']} -> {source['dst']}")
+```
+
+This will print a long list of real-world examples like this:
+
+```
+É calculado o esforço de [...] pesca de todos os navios que capturam bacalhau. -> The fishing effort of all [...] the vessels catching cod will be calculated.
+```
+
+
+## Bash, curl and jq usage example
+
+Once installed on Heroku, Linguee API can be used as any other API service.
+
+For Bash scripts you can use curl and [jq](https://stedolan.github.io/jq/), a command-line JSON parser.
+
+### Translate a word or a phrase from one language to another with Bash
+
+A request to the sample API installation to get all usage examples of "bacalhau" along with their translations.
+
+```bash
+curl -s 'https://linguee-api-v2.herokuapp.com/api/v2/translations?query=bacalhau&src=pt&dst=en' | jq -c '{text: .[].text, translation: .[].translations[].text}'
+```
+
+This will print
+
+```json lines
+{"text":"bacalhau","translation":"cod"}
+{"text":"bacalhau","translation":"codfish"}
+```
+
+### Provide translation examples with Bash
+
+A request to the sample API installation to get all usage examples of "bacalhau" along with their translations.
+
+```shell
+curl -s 'https://linguee-api-v2.herokuapp.com/api/v2/examples?query=bacalhau&src=pt&dst=en' | jq -c '{text: .[].text, translation: .[].translations[].text}'
+```
+
+This will print something like this:
+
+```json lines
+{"text":"bacalhau desfiado","translation":"shredded cod"}
+{"text":"bacalhau desfiado","translation":"codfish fillet"}
+...
+{"text":"bacalhau do Atlântico","translation":"Atlantic cod"}
+```
+
+### Get access to real world usage examples with Bash
+
+A request to the sample API installation to get all real-world usage examples of "bacalhau" along with their translations.
+
+```shell
+curl -s 'https://linguee-api-v2.herokuapp.com/api/v2/external_sources?query=bacalhau&src=pt&dst=en' | jq -c '{src: .[].src, dst: .[].dst}'
+```
+
+This will print a long list of real-world examples like this:
+
+```json lines
+{"src":"É calculado o esforço de [...] pesca de todos os navios que capturam bacalhau.","dst":"The fishing effort of all [...] the vessels catching cod will be calculated."}
+...
+```
 
 ## Terms and Conditions
 

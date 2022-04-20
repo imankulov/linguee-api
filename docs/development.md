@@ -13,8 +13,8 @@ cp env.example .env
 
 You can run tests offline or online. Offline tests fail when you try to download a new translation that is not in the cache. Set the configuration option in the `.env` file.
 
-```python
-PYTEST_OFFLINE=true
+```dotenv
+PYTEST_OFFLINE=false
 ```
 
 The run the tests
