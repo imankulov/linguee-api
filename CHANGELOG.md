@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## UNRELEASED
+## 2.2.1 (2022-04-20)
 
 - Update development dependencies and pre-commit hooks
 - Provide usage examples for Python and Bash
