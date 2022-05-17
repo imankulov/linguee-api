@@ -1,3 +1,5 @@
+from typing import Dict
+
 from linguee_api.downloaders.interfaces import IDownloader
 
 
@@ -11,7 +13,7 @@ class MemoryCache(IDownloader):
 
     def __init__(self, upstream: IDownloader):
         self.upstream = upstream
-        self.cache: dict[str, str] = {}
+        self.cache: Dict[str, str] = {}
 
     async def download(self, url: str) -> str:
         if url not in self.cache:

@@ -1,5 +1,5 @@
 import abc
-from typing import Optional
+from typing import Dict, List, Optional
 
 from xextract import Group, String
 
@@ -78,7 +78,7 @@ def normalize_example(text):
     return text
 
 
-def parse_audio_links(text: Optional[str]) -> list[dict[str, str]]:
+def parse_audio_links(text: Optional[str]) -> List[Dict[str, str]]:
     if not text:
         return []
 

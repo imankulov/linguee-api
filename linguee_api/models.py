@@ -1,5 +1,5 @@
 """Data classes that define the schema of the API response."""
-from typing import Optional, Union
+from typing import List, Optional, Union
 
 from pydantic import BaseModel, Field
 
@@ -41,15 +41,15 @@ class SearchResult(BaseModel):
             featured: bool = Field(example=False)
             text: str = Field(example="required")
             pos: Optional[str] = Field(example="adjective / past participle, masculine")
-            audio_links: Optional[list[AudioLink]]
-            examples: Optional[list[TranslationExample]]
+            audio_links: Optional[List[AudioLink]]
+            examples: Optional[List[TranslationExample]]
 
         featured: bool = Field(example=False)
         text: str = Field(example="obrigado")
         pos: Optional[str] = Field(example="interjection")
         grammar_info: Optional[str] = Field(example="Akk")
-        audio_links: Optional[list[AudioLink]]
-        translations: list[Translation]
+        audio_links: Optional[List[AudioLink]]
+        translations: List[Translation]
 
     class Example(BaseModel):
         """One example."""
@@ -62,8 +62,8 @@ class SearchResult(BaseModel):
 
         text: str = Field(example="muito obrigado")
         pos: Optional[str] = Field(example="m")
-        audio_links: Optional[list[AudioLink]]
-        translations: list[Translation]
+        audio_links: Optional[List[AudioLink]]
+        translations: List[Translation]
 
     class ExternalSource(BaseModel):
         """An example of usage of the word in the context."""
@@ -89,9 +89,9 @@ class SearchResult(BaseModel):
     dst_lang: str = Field(example="en")
     query: str = Field(example="obrigado")
     correct_query: str = Field(example="obrigado")
-    lemmas: list[Lemma]
-    examples: list[Example]
-    external_sources: list[ExternalSource]
+    lemmas: List[Lemma]
+    examples: List[Example]
+    external_sources: List[ExternalSource]
 
 
 class Autocompletions(BaseModel):
@@ -106,9 +106,9 @@ class Autocompletions(BaseModel):
 
         text: str = Field(example="Katze")
         pos: Optional[str] = Field(example="f")
-        translations: list[TranslationItem]
+        translations: List[TranslationItem]
 
-    autocompletions: list[AutocompletionItem]
+    autocompletions: List[AutocompletionItem]
 
 
 class Correction(BaseModel):

@@ -1,5 +1,5 @@
 import re
-from typing import Any, Optional
+from typing import Any, Dict, Optional
 
 from xextract import Group
 from xextract.parsers import BaseNamedParser
@@ -19,7 +19,7 @@ def concat_values(name: str, *children: BaseNamedParser):
     )
 
 
-def _concat_values_callback(objects: dict[str, Any]) -> str:
+def _concat_values_callback(objects: Dict[str, Any]) -> str:
     ret = []
     for value in objects.values():
         if isinstance(value, list):

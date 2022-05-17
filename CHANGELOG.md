@@ -2,10 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## UNRELEASED
+
+- Added packaging support
+- Added support for various versions of Python (3.8+)
+
 ## 2.2.1 (2022-04-20)
 
-- Update development dependencies and pre-commit hooks
-- Provide usage examples for Python and Bash
+- Updated development dependencies and pre-commit hooks
+- Provided usage examples for Python and Bash
 
 ## 2.2.0 (2021-09-28)
 
