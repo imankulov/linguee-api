@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 - Added packaging support
 - Added support for various versions of Python (3.8+)
+- Updated httpx to the latest version. Ref: CVE-2021-41945
 
 ## 2.2.1 (2022-04-20)
 
