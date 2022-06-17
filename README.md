@@ -23,6 +23,24 @@ Sample installation is available at https://linguee-api-v2.herokuapp.com.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
+## Local installation
+
+Install the Linguee API.
+
+```shell
+$ pip install linguee-api
+```
+
+Run the API server with `uvicorn` (installed as a dependency.)
+
+```shell
+$ uvicorn linguee_api.api:app
+...
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+...
+```
+
+Open http://127.0.0.1:8000. You will be redirected to the API documentation page, where you can test the API.
 
 ## Supported languages
 
