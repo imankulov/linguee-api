@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## UNRELEASED
+## 2.3.0 (2022-06-17)
 
 - Added packaging support
 - Added support for various versions of Python (3.8+)
