@@ -10,5 +10,11 @@
     {
       "url": "heroku/python"
     }
-  ]
+  ],
+  "env": {
+    "DISABLE_POETRY_CREATE_RUNTIME_FILE": {
+      "description": "Disable the creation of the runtime file by Poetry buildpack",
+      "value": "1"
+    }
+  }
 }
