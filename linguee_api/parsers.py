@@ -7,6 +7,7 @@ from linguee_api.models import (
     Autocompletions,
     AutocompletionsOrError,
     Correction,
+    FollowCorrections,
     NotFound,
     SearchResult,
     SearchResultOrError,
@@ -17,7 +18,9 @@ from linguee_api.parser_utils import concat_values, normalize, take_first_item
 
 class IParser(abc.ABC):
     @abc.abstractmethod
-    def parse_search_result(self, page_html: str) -> SearchResultOrError:
+    def parse_search_result(
+        self, page_html: str, follow_corrections: FollowCorrections
+    ) -> SearchResultOrError:
         ...
 
     @abc.abstractmethod
@@ -26,16 +29,36 @@ class IParser(abc.ABC):
 
 
 class XExtractParser(IParser):
-    def parse_search_result(self, page_html: str) -> SearchResultOrError:
+    def parse_search_result(
+        self, page_html: str, follow_corrections: FollowCorrections
+    ) -> SearchResultOrError:
+        # find correction, if asked. We'll use it on not found or empty response.
+        correction = None
+
+        if follow_corrections in (
+            FollowCorrections.ALWAYS,
+            FollowCorrections.ON_EMPTY_TRANSLATIONS,
+        ):
+            correction = self.find_correction(page_html)
+
         # check if the page is correction
-        correction = self.find_correction(page_html)
-        if correction:
+        if correction and follow_corrections == FollowCorrections.ALWAYS:
             return Correction(correction=correction)
-        # check if the page is a not found page without any correction
+
+        # check if the page is a not found
         if self.is_not_found(page_html):
+            if correction:
+                return Correction(correction=correction)
             return NotFound()
+
         # assume it's a valid result
-        return self.parse_search_result_to_page(page_html)
+        result = self.parse_search_result_to_page(page_html)
+
+        # Process ON_EMTPY case
+        if correction and not result.lemmas:
+            return Correction(correction=correction)
+
+        return result
 
     def is_not_found(self, page_html: str) -> bool:
         """Return True if the page is a NOT FOUND page."""

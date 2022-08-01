@@ -1,15 +1,24 @@
 import sentry_sdk
-from fastapi import FastAPI, Response, status
+from fastapi import FastAPI, Query, Response, status
 from sentry_sdk.integrations.asgi import SentryAsgiMiddleware
 from starlette.responses import RedirectResponse
 
 from linguee_api.config import settings
-from linguee_api.const import LANGUAGE_CODE, PROJECT_DESCRIPTION
+from linguee_api.const import (
+    FOLLOW_CORRECTIONS_DESCRIPTION,
+    LANGUAGE_CODE,
+    PROJECT_DESCRIPTION,
+)
 from linguee_api.downloaders.file_cache import FileCache
 from linguee_api.downloaders.httpx_downloader import HTTPXDownloader
 from linguee_api.downloaders.memory_cache import MemoryCache
 from linguee_api.linguee_client import LingueeClient
-from linguee_api.models import Autocompletions, ParseError, SearchResult
+from linguee_api.models import (
+    Autocompletions,
+    FollowCorrections,
+    ParseError,
+    SearchResult,
+)
 from linguee_api.parsers import XExtractParser
 
 sentry_sdk.init(dsn=settings.sentry_dsn, environment=settings.sentry_environment)
@@ -47,6 +56,10 @@ async def translations(
     dst: LANGUAGE_CODE,
     response: Response,
     guess_direction: bool = False,
+    follow_corrections: FollowCorrections = Query(
+        default=FollowCorrections.ALWAYS,
+        description=FOLLOW_CORRECTIONS_DESCRIPTION,
+    ),
 ):
     """
     Translate the query between src and dst language.
@@ -60,6 +73,7 @@ async def translations(
         src=src,
         dst=dst,
         guess_direction=guess_direction,
+        follow_corrections=follow_corrections,
     )
     if isinstance(result, ParseError):
         response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
@@ -81,6 +95,10 @@ async def examples(
     dst: LANGUAGE_CODE,
     response: Response,
     guess_direction: bool = False,
+    follow_corrections: FollowCorrections = Query(
+        default=FollowCorrections.ALWAYS,
+        description=FOLLOW_CORRECTIONS_DESCRIPTION,
+    ),
 ):
     """Provide translation examples."""
     result = await client.process_search_result(
@@ -88,6 +106,7 @@ async def examples(
         src=src,
         dst=dst,
         guess_direction=guess_direction,
+        follow_corrections=follow_corrections,
     )
     if isinstance(result, ParseError):
         response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
@@ -109,6 +128,10 @@ async def external_sources(
     dst: LANGUAGE_CODE,
     response: Response,
     guess_direction: bool = False,
+    follow_corrections: FollowCorrections = Query(
+        default=FollowCorrections.ALWAYS,
+        description=FOLLOW_CORRECTIONS_DESCRIPTION,
+    ),
 ):
     """Provide translation examples from external (unverified) sources."""
     result = await client.process_search_result(
@@ -116,6 +139,7 @@ async def external_sources(
         src=src,
         dst=dst,
         guess_direction=guess_direction,
+        follow_corrections=follow_corrections,
     )
     if isinstance(result, ParseError):
         response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR

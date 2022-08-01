@@ -5,6 +5,12 @@ from typing import List, Optional, Union
 from pydantic import BaseModel, Field
 
 
+class FollowCorrections(Enum):
+    ALWAYS = "always"
+    NEVER = "never"
+    ON_EMPTY_TRANSLATIONS = "on_empty_translations"
+
+
 class AudioLink(BaseModel):
     """The link to the audio file along with the language variant."""
 

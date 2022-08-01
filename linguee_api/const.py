@@ -77,3 +77,13 @@ PROJECT_DESCRIPTION = """
     the issue at GitHub</a>.
 </p>
 """
+
+FOLLOW_CORRECTIONS_DESCRIPTION = """A flag that defines how to treat responses with a
+'did you mean' link. There are three possible values:
+
+- `always` (default): always follow the suggestion if found on a page, even if the page
+   itself has translations.
+- `never`: never follow the suggested correction.
+- `on_empty_translations`: only follow the link if there are no translations on
+   the page.
+"""

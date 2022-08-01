@@ -9,6 +9,8 @@ from linguee_api.models import (
     Autocompletions,
     AutocompletionsOrError,
     Correction,
+    FollowCorrections,
+    NotFound,
     ParseError,
     SearchResult,
 )
@@ -36,9 +38,11 @@ class LingueeClient:
         src: LANGUAGE_CODE,
         dst: LANGUAGE_CODE,
         guess_direction: bool,
+        follow_corrections: FollowCorrections,
     ) -> Union[SearchResult, ParseError]:
         logger.info(
-            f"Processing API request: {query=}, {src=}, {dst=}, {guess_direction=}"
+            f"Processing API request: {query=}, {src=}, {dst=}, "
+            f"{guess_direction=}, {follow_corrections=}"
         )
         url = get_search_url(
             query=query,
@@ -54,7 +58,9 @@ class LingueeClient:
                 logger.error(f"Error downloading URL: {error=}, {url=}")
                 return ParseError(message=str(error))
 
-            parse_result = self.page_parser.parse_search_result(page_html)
+            parse_result = self.page_parser.parse_search_result(
+                page_html, follow_corrections=follow_corrections
+            )
             if isinstance(parse_result, ParseError):
                 logger.info(f"Parser returned parse error: {parse_result=}")
                 return parse_result
@@ -75,6 +81,9 @@ class LingueeClient:
                     f"{len(parse_result.external_sources)=}"
                 )
                 return parse_result
+            elif isinstance(parse_result, NotFound):
+                logger.info("Parser returned not found")
+                return ParseError(message="Translation not found")
             else:
                 logger.error(f"Unexpected API result: {parse_result=}")
                 raise RuntimeError(f"Unexpected API result: {parse_result}")
