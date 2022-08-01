@@ -5,6 +5,7 @@ import pytest
 from linguee_api.const import LANGUAGE_CODE
 from linguee_api.downloaders.file_cache import FileCache
 from linguee_api.linguee_client import get_search_url
+from linguee_api.models import UsageFrequency
 from linguee_api.parsers import XExtractParser
 
 
@@ -126,3 +127,27 @@ async def test_parser_should_process_examples_without_links(
     sources = page.external_sources
     assert all([s.src_url.startswith("http") for s in sources])
     assert all([s.dst_url.startswith("http") for s in sources])
+
+
+@pytest.mark.asyncio
+async def test_parser_should_find_almost_always_usage_frequency(
+    examples_downloader: FileCache,
+):
+    url = get_search_url(query="bacalhau", src="pt", dst="en", guess_direction=False)
+    page_html = await examples_downloader.download(url)
+    page = XExtractParser().parse_search_result_to_page(page_html)
+    assert page.lemmas[0].translations[1].usage_frequency is None
+    assert (
+        page.lemmas[0].translations[0].usage_frequency == UsageFrequency.ALMOST_ALWAYS
+    )
+
+
+@pytest.mark.asyncio
+async def test_parser_should_find_often_usage_frequency(
+    examples_downloader: FileCache,
+):
+    url = get_search_url(query="placa", src="pt", dst="en", guess_direction=False)
+    page_html = await examples_downloader.download(url)
+    page = XExtractParser().parse_search_result_to_page(page_html)
+    assert page.lemmas[0].translations[1].usage_frequency is None
+    assert page.lemmas[0].translations[0].usage_frequency == UsageFrequency.OFTEN

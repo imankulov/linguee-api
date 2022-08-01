@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## UNRELEASED
 
 - Set Heroku runtime to python-3.10.5 (#21)
+- Added "usage_frequency" attribute to translations (#22)
 
 ## 2.3.0 (2022-06-17)
 

@@ -1,4 +1,5 @@
 """Data classes that define the schema of the API response."""
+from enum import Enum
 from typing import List, Optional, Union
 
 from pydantic import BaseModel, Field
@@ -14,6 +15,13 @@ class AudioLink(BaseModel):
         )
     )
     lang: str = Field(example="Brazilian Portuguese")
+
+
+class UsageFrequency(Enum):
+    """Translation usage frequency. Valid values: `often` or `almost_always`."""
+
+    OFTEN = "often"
+    ALMOST_ALWAYS = "almost_always"
 
 
 class SearchResult(BaseModel):
@@ -43,6 +51,9 @@ class SearchResult(BaseModel):
             pos: Optional[str] = Field(example="adjective / past participle, masculine")
             audio_links: Optional[List[AudioLink]]
             examples: Optional[List[TranslationExample]]
+            usage_frequency: Optional[UsageFrequency] = Field(
+                example=UsageFrequency.OFTEN
+            )
 
         featured: bool = Field(example=False)
         text: str = Field(example="obrigado")

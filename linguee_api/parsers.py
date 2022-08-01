@@ -10,6 +10,7 @@ from linguee_api.models import (
     NotFound,
     SearchResult,
     SearchResultOrError,
+    UsageFrequency,
 )
 from linguee_api.parser_utils import concat_values, normalize, take_first_item
 
@@ -93,6 +94,17 @@ def parse_audio_links(text: Optional[str]) -> List[Dict[str, str]]:
         url = f"https://www.linguee.com/mp3/{url_part}.mp3"
         ret.append({"url": url, "lang": lang})
     return ret
+
+
+def parse_usage_frequency(text: Optional[str]) -> Optional[UsageFrequency]:
+    if not text:
+        return None
+    chunks = set(text.strip().split())
+    if "usedveryoften" in chunks:
+        return UsageFrequency.OFTEN
+    if "usedalmostalways" in chunks:
+        return UsageFrequency.ALMOST_ALWAYS
+    return None
 
 
 def normalize_lemma_text(children):
@@ -191,6 +203,13 @@ lemma_schema = [
                 css="a.audio",
                 attr="onclick",
                 callback=parse_audio_links,
+            ),
+            String(
+                name="usage_frequency",
+                quant="?",
+                css="span.tag_c",
+                attr="class",
+                callback=parse_usage_frequency,
             ),
             Group(
                 name="examples",
