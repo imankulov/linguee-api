@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## UNRELEASED
+## 2.4.0 (2022-08-01)
 
 - Set Heroku runtime to python-3.10.5 (#21)
 - Added "usage_frequency" attribute to translations (#22)
