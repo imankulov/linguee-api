@@ -1,8 +1,10 @@
 FROM python:3.10
 
-RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+RUN curl -sSL https://install.python-poetry.org | python3 -
 WORKDIR /app
-COPY . .
-RUN /root/.poetry/bin/poetry install
+COPY poetry.lock pyproject.toml ./
+RUN /root/.local/bin/poetry install --no-root
 EXPOSE 8000
-CMD /root/.poetry/bin/poetry run uvicorn linguee_api.api:app --host 0.0.0.0 --port 8000
+COPY . .
+RUN /root/.local/bin/poetry install
+CMD /root/.local/bin/poetry run uvicorn linguee_api.api:app --host 0.0.0.0 --port 8000

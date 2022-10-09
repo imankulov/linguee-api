@@ -4,6 +4,8 @@
 .env
 .coverage
 .tox
+.cache
+.git
 coverage.xml
 htmlcov/
 dist
