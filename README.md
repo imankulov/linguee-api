@@ -10,18 +10,16 @@ The proxy provides three API endpoints: for translations, for examples, and exte
 
 The API documentation and the playground is available for the sample installation:
 
-- [Documentation and API playground](https://linguee-api-v2.herokuapp.com/docs)
-- [The same documentation, but formatted with ReDoc](https://linguee-api-v2.herokuapp.com/redoc)
+- [Documentation and API playground](https://linguee-api.fly.dev/docs)
+- [The same documentation, but formatted with ReDoc](https://linguee-api.fly.dev/redoc)
 
 ## Sample installation
 
-Sample installation is available at https://linguee-api-v2.herokuapp.com.
+Sample installation is available at https://linguee-api.fly.dev.
 
-- Get translations of the word "bacalhau" from Portuguese to English: [https://linguee-api-v2.herokuapp.com/api/v2/translations?query=bacalhau&src=pt&dst=en](https://linguee-api-v2.herokuapp.com/api/v2/translations?query=bacalhau&src=pt&dst=en).
-- Get a list of curated examples: [https://linguee-api-v2.herokuapp.com/api/v2/examples?query=bacalhau&src=pt&dst=en](https://linguee-api-v2.herokuapp.com/api/v2/examples?query=bacalhau&src=pt&dst=en).
-- Get examples from external sources: [https://linguee-api-v2.herokuapp.com/api/v2/external_sources?query=bacalhau&src=pt&dst=en](https://linguee-api-v2.herokuapp.com/api/v2/examples?query=bacalhau&src=pt&dst=en).
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+- Get translations of the word "bacalhau" from Portuguese to English: [https://linguee-api.fly.dev/api/v2/translations?query=bacalhau&src=pt&dst=en](https://linguee-api.fly.dev/api/v2/translations?query=bacalhau&src=pt&dst=en).
+- Get a list of curated examples: [https://linguee-api.fly.dev/api/v2/examples?query=bacalhau&src=pt&dst=en](https://linguee-api.fly.dev/api/v2/examples?query=bacalhau&src=pt&dst=en).
+- Get examples from external sources: [https://linguee-api.fly.dev/api/v2/external_sources?query=bacalhau&src=pt&dst=en](https://linguee-api.fly.dev/api/v2/examples?query=bacalhau&src=pt&dst=en).
 
 ## Local installation
 
@@ -84,7 +82,7 @@ A request to the sample API installation to translate the word "bacalhau" from P
 ```python
 import requests
 
-api_root = "https://linguee-api-v2.herokuapp.com/api/v2"
+api_root = "https://linguee-api.fly.dev/api/v2"
 resp = requests.get(f"{api_root}/translations", params={"query": "bacalhau", "src": "pt", "dst": "en"})
 for lemma in resp.json():
     for translation in lemma['translations']:
@@ -105,7 +103,7 @@ A request to the sample API installation to get all usage examples of "bacalhau"
 ```python
 import requests
 
-api_root = "https://linguee-api-v2.herokuapp.com/api/v2"
+api_root = "https://linguee-api.fly.dev/api/v2"
 
 resp = requests.get(f"{api_root}/examples", params={"query": "bacalhau", "src": "pt", "dst": "en"})
 
@@ -130,7 +128,7 @@ A request to the sample API installation to get all real-world usage examples of
 ```python
 import requests
 
-api_root = "https://linguee-api-v2.herokuapp.com/api/v2"
+api_root = "https://linguee-api.fly.dev/api/v2"
 
 resp = requests.get(f"{api_root}/external_sources", params={"query": "bacalhau", "src": "pt", "dst": "en"})
 for source in resp.json():
@@ -155,7 +153,7 @@ For Bash scripts you can use curl and [jq](https://stedolan.github.io/jq/), a co
 A request to the sample API installation to get all usage examples of "bacalhau" along with their translations.
 
 ```bash
-curl -s 'https://linguee-api-v2.herokuapp.com/api/v2/translations?query=bacalhau&src=pt&dst=en' | jq -c '{text: .[].text, translation: .[].translations[].text}'
+curl -s 'https://linguee-api.fly.dev/api/v2/translations?query=bacalhau&src=pt&dst=en' | jq -c '{text: .[].text, translation: .[].translations[].text}'
 ```
 
 This will print
@@ -170,7 +168,7 @@ This will print
 A request to the sample API installation to get all usage examples of "bacalhau" along with their translations.
 
 ```shell
-curl -s 'https://linguee-api-v2.herokuapp.com/api/v2/examples?query=bacalhau&src=pt&dst=en' | jq -c '{text: .[].text, translation: .[].translations[].text}'
+curl -s 'https://linguee-api.fly.dev/api/v2/examples?query=bacalhau&src=pt&dst=en' | jq -c '{text: .[].text, translation: .[].translations[].text}'
 ```
 
 This will print something like this:
@@ -187,7 +185,7 @@ This will print something like this:
 A request to the sample API installation to get all real-world usage examples of "bacalhau" along with their translations.
 
 ```shell
-curl -s 'https://linguee-api-v2.herokuapp.com/api/v2/external_sources?query=bacalhau&src=pt&dst=en' | jq -c '{src: .[].src, dst: .[].dst}'
+curl -s 'https://linguee-api.fly.dev/api/v2/external_sources?query=bacalhau&src=pt&dst=en' | jq -c '{src: .[].src, dst: .[].dst}'
 ```
 
 This will print a long list of real-world examples like this:
