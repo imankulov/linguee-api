@@ -7,24 +7,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v3
+      - name: Install poetry
+        run: pipx install poetry
+      - uses: actions/setup-python@v4
         with:
-          python-version: "3.9"
+          python-version: "3.10"
+          cache: "poetry"
       - name: Install dependencies
         run: |
-          set -ex
-          curl -O -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py
-          python get-poetry.py --yes
-          rm -f get-poetry.py
-          $HOME/.poetry/bin/poetry install
+          poetry install
       - name: Test with pytest
         run: |
           set -ex
-          $HOME/.poetry/bin/poetry run coverage run -m pytest
+          poetry run coverage run -m pytest
       - name: Convert coverage to XML
         run: |
           set -ex
-          $HOME/.poetry/bin/poetry run coverage xml
+          poetry run coverage xml
       - name: Upload coverage to codecov
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
