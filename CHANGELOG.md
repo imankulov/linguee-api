@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## UNRELEASED
+## 2.5.0 (2022-11-19)
 
 - Added "follow_corrections" API flag (#23)
 - Added configuration to host the project on fly.io
