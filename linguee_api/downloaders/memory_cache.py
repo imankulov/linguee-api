@@ -1,21 +1,18 @@
-from typing import Dict
+from async_lru import alru_cache
 
 from linguee_api.downloaders.interfaces import IDownloader
 
 
 class MemoryCache(IDownloader):
-    """
-    Memory cache.
+    """Memory cache.
 
     Exposes the downloader interface, but requires the upstream to work and
     keeps records in memory.
     """
 
-    def __init__(self, upstream: IDownloader):
+    def __init__(self, upstream: IDownloader, maxsize: int = 1000):
         self.upstream = upstream
-        self.cache: Dict[str, str] = {}
+        self.download = alru_cache(maxsize=maxsize)(self.download)  # type: ignore
 
     async def download(self, url: str) -> str:
-        if url not in self.cache:
-            self.cache[url] = await self.upstream.download(url)
-        return self.cache[url]
+        return await self.upstream.download(url)

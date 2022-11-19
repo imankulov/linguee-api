@@ -4,9 +4,9 @@ from pydantic import BaseSettings, Field
 from linguee_api.config import settings
 from linguee_api.const import PROJECT_ROOT
 from linguee_api.downloaders.error_downloader import ErrorDownloader
-from linguee_api.downloaders.file_cache import FileCache
 from linguee_api.downloaders.httpx_downloader import HTTPXDownloader
 from linguee_api.downloaders.interfaces import IDownloader
+from linguee_api.downloaders.sqlite_cache import SQLiteCache
 from linguee_api.linguee_client import LingueeClient
 from linguee_api.parsers import XExtractParser
 
@@ -29,9 +29,9 @@ pytest_settings = PytestSettings()
 
 
 @pytest.fixture
-def examples_downloader() -> FileCache:
-    return FileCache(
-        cache_directory=settings.cache_directory, upstream=pytest_settings.downloader
+def examples_downloader() -> IDownloader:
+    return SQLiteCache(
+        cache_database=settings.cache_database, upstream=pytest_settings.downloader
     )
 
 

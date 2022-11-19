@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## UNRELEASED
+
+- Added SQLite cache and made it the default one.
+- Made MemoryCache use LRU.
+- Added tests for all cache classes.
+
 ## 2.5.1 (2022-11-19)
 
 - Added FAQ to the README, where provided a clearer explanation of the 503 error.

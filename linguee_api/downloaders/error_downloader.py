@@ -5,7 +5,7 @@ class ErrorDownloader(IDownloader):
     """
     A downloader that always raises an DownloaderError.
 
-    Helpful to use as the upstream downloader for FileCache() in tests to make sure
+    Helpful to use as the upstream downloader for cache in tests to make sure
     that we don't send requests to the server.
     """
 

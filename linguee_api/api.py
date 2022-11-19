@@ -9,9 +9,9 @@ from linguee_api.const import (
     LANGUAGE_CODE,
     PROJECT_DESCRIPTION,
 )
-from linguee_api.downloaders.file_cache import FileCache
 from linguee_api.downloaders.httpx_downloader import HTTPXDownloader
 from linguee_api.downloaders.memory_cache import MemoryCache
+from linguee_api.downloaders.sqlite_cache import SQLiteCache
 from linguee_api.linguee_client import LingueeClient
 from linguee_api.models import (
     Autocompletions,
@@ -30,8 +30,9 @@ app = FastAPI(
 app.add_middleware(SentryAsgiMiddleware)
 
 page_downloader = MemoryCache(
-    upstream=FileCache(
-        cache_directory=settings.cache_directory, upstream=HTTPXDownloader()
+    upstream=SQLiteCache(
+        cache_database=settings.cache_database,
+        upstream=HTTPXDownloader(),
     )
 )
 client = LingueeClient(page_downloader=page_downloader, page_parser=XExtractParser())

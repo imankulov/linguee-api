@@ -1,6 +1,6 @@
 import pytest
 
-from linguee_api.downloaders.file_cache import FileCache
+from linguee_api.downloaders.interfaces import IDownloader
 from linguee_api.linguee_client import get_autocompletions_url
 from linguee_api.models import Autocompletions
 from linguee_api.parsers import XExtractParser
@@ -8,7 +8,7 @@ from linguee_api.parsers import XExtractParser
 
 @pytest.mark.asyncio
 async def test_parse_autocompletions_should_return_autocompletions(
-    examples_downloader: FileCache,
+    examples_downloader: IDownloader,
 ):
     url = get_autocompletions_url(query="katz", src="de", dst="en")
     page = await examples_downloader.download(url)

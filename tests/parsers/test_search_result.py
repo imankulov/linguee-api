@@ -3,7 +3,7 @@ from typing import Optional
 import pytest
 
 from linguee_api.const import LANGUAGE_CODE
-from linguee_api.downloaders.file_cache import FileCache
+from linguee_api.downloaders.interfaces import IDownloader
 from linguee_api.linguee_client import get_search_url
 from linguee_api.models import UsageFrequency
 from linguee_api.parsers import XExtractParser
@@ -21,7 +21,7 @@ from linguee_api.parsers import XExtractParser
 )
 @pytest.mark.asyncio
 async def test_parser_should_detect_not_found(
-    examples_downloader: FileCache,
+    examples_downloader: IDownloader,
     query: str,
     src: LANGUAGE_CODE,
     dst: LANGUAGE_CODE,
@@ -34,7 +34,7 @@ async def test_parser_should_detect_not_found(
 
 @pytest.mark.asyncio
 async def test_parser_should_find_translation_examples(
-    examples_downloader: FileCache,
+    examples_downloader: IDownloader,
 ):
     url = get_search_url(query="obrigado", src="pt", dst="en", guess_direction=False)
     page_html = await examples_downloader.download(url)
@@ -66,7 +66,7 @@ async def test_parser_should_find_translation_examples(
 )
 @pytest.mark.asyncio
 async def test_parser_should_find_correction(
-    examples_downloader: FileCache,
+    examples_downloader: IDownloader,
     query: str,
     src: LANGUAGE_CODE,
     dst: LANGUAGE_CODE,
@@ -97,7 +97,7 @@ async def test_parser_should_find_correction(
 )
 @pytest.mark.asyncio
 async def test_parse_to_dict_should_return_parseable_result(
-    examples_downloader: FileCache,
+    examples_downloader: IDownloader,
     query: str,
     src: LANGUAGE_CODE,
     dst: LANGUAGE_CODE,
@@ -109,7 +109,7 @@ async def test_parse_to_dict_should_return_parseable_result(
 
 @pytest.mark.asyncio
 async def test_parser_should_find_grammar_info_in_german_verbs(
-    examples_downloader: FileCache,
+    examples_downloader: IDownloader,
 ):
     url = get_search_url(query="bringen", src="de", dst="en", guess_direction=False)
     page_html = await examples_downloader.download(url)
@@ -119,7 +119,7 @@ async def test_parser_should_find_grammar_info_in_german_verbs(
 
 @pytest.mark.asyncio
 async def test_parser_should_process_examples_without_links(
-    examples_downloader: FileCache,
+    examples_downloader: IDownloader,
 ):
     url = get_search_url(query="einfach", src="de", dst="en", guess_direction=False)
     page_html = await examples_downloader.download(url)
@@ -131,7 +131,7 @@ async def test_parser_should_process_examples_without_links(
 
 @pytest.mark.asyncio
 async def test_parser_should_find_almost_always_usage_frequency(
-    examples_downloader: FileCache,
+    examples_downloader: IDownloader,
 ):
     url = get_search_url(query="bacalhau", src="pt", dst="en", guess_direction=False)
     page_html = await examples_downloader.download(url)
@@ -144,7 +144,7 @@ async def test_parser_should_find_almost_always_usage_frequency(
 
 @pytest.mark.asyncio
 async def test_parser_should_find_often_usage_frequency(
-    examples_downloader: FileCache,
+    examples_downloader: IDownloader,
 ):
     url = get_search_url(query="placa", src="pt", dst="en", guess_direction=False)
     page_html = await examples_downloader.download(url)
@@ -155,7 +155,7 @@ async def test_parser_should_find_often_usage_frequency(
 
 @pytest.mark.asyncio
 async def test_parser_should_find_lemma_forms(
-    examples_downloader: FileCache,
+    examples_downloader: IDownloader,
 ):
     url = get_search_url(query="obrigado", src="pt", dst="en", guess_direction=False)
     page_html = await examples_downloader.download(url)
@@ -166,7 +166,7 @@ async def test_parser_should_find_lemma_forms(
 
 @pytest.mark.asyncio
 async def test_parser_should_find_lemma_forms_for_verbs(
-    examples_downloader: FileCache,
+    examples_downloader: IDownloader,
 ):
     url = get_search_url(query="shrink", src="en", dst="pt", guess_direction=False)
     page_html = await examples_downloader.download(url)
