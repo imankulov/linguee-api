@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## UNRELEASED
+
+- Added FAQ to the README, where provided a clearer explanation of the 503 error.
+
 ## 2.5.0 (2022-11-19)
 
 - Added "follow_corrections" API flag (#23)

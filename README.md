@@ -195,6 +195,12 @@ This will print a long list of real-world examples like this:
 ...
 ```
 
+## FAQ
+
+### The API server returns "The Linguee server returned 503"
+
+This error means that the Linguee website temporarily blocks the API client for sending too many requests. If you use the sample API server on https://linguee-api.fly.dev, you can try to send the request later or consider installing your API server, where you won't share the same IP address with other users.
+
 ## Terms and Conditions
 
 If you use the API, make sure you comply with
