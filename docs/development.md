@@ -28,3 +28,13 @@ poetry run pytest
 ```bash
 poetry run uvicorn linguee_api.api:app
 ```
+
+## How to make a new release
+
+```bash
+bum2version minor
+git push
+git push --tags
+poetry build
+poetry publish
+```
