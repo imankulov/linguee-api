@@ -7,6 +7,8 @@ All notable changes to this project will be documented in this file.
 - Added SQLite cache and made it the default one.
 - Made MemoryCache use LRU.
 - Added tests for all cache classes.
+- Updated Dockerfile to use /cache for file and SQLite caches.
+- Added a sample docker-compose file.
 
 ## 2.5.1 (2022-11-19)
 

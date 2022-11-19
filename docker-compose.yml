@@ -1,0 +1,17 @@
+# This is a sample docker-compose.yml file to run the Linguee API server. It exposes the API on port 8000 and
+# stores the cache between runs in a volume "linguee-cache".
+#
+# If you need to reset the cache, you can run:
+#   docker-compose down -v
+version: "3.3"
+
+services:
+  linguee:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - linguee-cache:/cache
+
+volumes:
+  linguee-cache: {}
