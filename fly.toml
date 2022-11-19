@@ -37,3 +37,7 @@ grace_period = "1s"
 interval = "15s"
 restart_limit = 0
 timeout = "2s"
+
+[mounts]
+source="linguee_cache"
+destination="/cache"
