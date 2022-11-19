@@ -2,7 +2,9 @@
 from enum import Enum
 from typing import List, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, validator
+
+from linguee_api.parser_utils import remove_round_brackets_and_split_by_commas
 
 
 class FollowCorrections(Enum):
@@ -64,9 +66,16 @@ class SearchResult(BaseModel):
         featured: bool = Field(example=False)
         text: str = Field(example="obrigado")
         pos: Optional[str] = Field(example="interjection")
+        forms: List[str] = Field(
+            example=["obrigada f sl", "obrigados m pl", "obrigadas f pl"]
+        )
         grammar_info: Optional[str] = Field(example="Akk")
         audio_links: Optional[List[AudioLink]]
         translations: List[Translation]
+
+        @validator("forms", pre=True, always=True)
+        def _validate_forms(cls, v):
+            return remove_round_brackets_and_split_by_commas(v)
 
     class Example(BaseModel):
         """One example."""

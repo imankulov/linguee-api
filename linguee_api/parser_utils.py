@@ -1,5 +1,5 @@
 import re
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
 from xextract import Group
 from xextract.parsers import BaseNamedParser
@@ -36,6 +36,18 @@ def normalize(text: str) -> str:
     For example "  foo   bar " is converted to "foo bar".
     """
     return re.sub(r"\s+", " ", text).strip()
+
+
+def remove_round_brackets_and_split_by_commas(text: Optional[str]) -> List[str]:
+    """Remove round brackets and split by commas."""
+    if not text:
+        return []
+
+    stripped_text = text.strip().strip("()")
+    if not stripped_text:
+        return []
+
+    return [item.strip() for item in stripped_text.split(",") if item.strip()]
 
 
 def take_first_item(variants) -> Optional[str]:

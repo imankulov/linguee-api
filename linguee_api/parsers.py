@@ -168,6 +168,16 @@ lemma_schema = [
             quant="*",
         ),
     ),
+    # Return a single string, that's being converted to a list in the model's validator.
+    concat_values(
+        "forms",
+        String(
+            name="forms",
+            css="span.tag_forms",
+            quant="*",
+            attr="_all_text",
+        ),
+    ),
     # We parse text as a group, because grammar_info may have zero or more elements.
     # and we care about the first record only
     Group(

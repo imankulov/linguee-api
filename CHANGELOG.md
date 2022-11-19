@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Added "follow_corrections" API flag (#23)
 - Added configuration to host the project on fly.io
 - Updated the address of the sample installation to https://linguee-api.fly.dev
+- Added lemma forms (#26)
 
 ## 2.4.0 (2022-08-01)
 

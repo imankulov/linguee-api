@@ -151,3 +151,24 @@ async def test_parser_should_find_often_usage_frequency(
     page = XExtractParser().parse_search_result_to_page(page_html)
     assert page.lemmas[0].translations[1].usage_frequency is None
     assert page.lemmas[0].translations[0].usage_frequency == UsageFrequency.OFTEN
+
+
+@pytest.mark.asyncio
+async def test_parser_should_find_lemma_forms(
+    examples_downloader: FileCache,
+):
+    url = get_search_url(query="obrigado", src="pt", dst="en", guess_direction=False)
+    page_html = await examples_downloader.download(url)
+    page = XExtractParser().parse_search_result_to_page(page_html)
+    assert page.lemmas[0].forms == []
+    assert page.lemmas[1].forms == ["obrigada f sl", "obrigados m pl", "obrigadas f pl"]
+
+
+@pytest.mark.asyncio
+async def test_parser_should_find_lemma_forms_for_verbs(
+    examples_downloader: FileCache,
+):
+    url = get_search_url(query="shrink", src="en", dst="pt", guess_direction=False)
+    page_html = await examples_downloader.download(url)
+    page = XExtractParser().parse_search_result_to_page(page_html)
+    assert page.lemmas[0].forms == ["shrank or shrunk", "shrunk"]
