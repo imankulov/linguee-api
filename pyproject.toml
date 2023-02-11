@@ -45,7 +45,7 @@ flake8 = "^3.8.4"
 coverage = "^5.4"
 import-linter = "^1.2.1"
 pytest-asyncio = "^0.14.0"
-ipython = "^7.22.0"
+ipython = "^8.10.0"
 click = "^7.1.2"
 asgiref = "^3.3.4"
 tox-poetry-installer = {extras = ["poetry"], version = "^0.8.4"}
