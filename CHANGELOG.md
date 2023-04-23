@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Added tests for all cache classes.
 - Updated Dockerfile to use /cache for file and SQLite caches.
 - Added a sample docker-compose file.
+- Updated FastAPI and httpx dependencies.
 
 ## 2.5.1 (2022-11-19)
 
