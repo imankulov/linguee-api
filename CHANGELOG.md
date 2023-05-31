@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## UNRELEASED
+
+- Updated all dependencies.
+
 ## 2.6.0 (2023-04-23)
 
 - Added SQLite cache and made it the default one.
