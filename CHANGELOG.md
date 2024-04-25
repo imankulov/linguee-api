@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## UNRELEASED
+## 2.6.1 (2024-04-25)
 
 - Updated all dependencies.
 - Fixed a bug with usage frequency parsing (#48).
