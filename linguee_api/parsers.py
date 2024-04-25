@@ -13,7 +13,12 @@ from linguee_api.models import (
     SearchResultOrError,
     UsageFrequency,
 )
-from linguee_api.parser_utils import concat_values, normalize, take_first_item
+from linguee_api.parser_utils import (
+    concat_values,
+    normalize,
+    take_first_item,
+    take_first_non_empty_item,
+)
 
 
 class IParser(abc.ABC):
@@ -237,12 +242,19 @@ lemma_schema = [
                 attr="onclick",
                 callback=parse_audio_links,
             ),
-            String(
+            Group(
                 name="usage_frequency",
-                quant="?",
-                css="span.tag_c",
-                attr="class",
-                callback=parse_usage_frequency,
+                quant=1,
+                callback=take_first_non_empty_item,
+                children=[
+                    String(
+                        name="item",
+                        quant="*",
+                        css="span.tag_c",
+                        attr="class",
+                        callback=parse_usage_frequency,
+                    ),
+                ],
             ),
             Group(
                 name="examples",

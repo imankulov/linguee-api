@@ -55,3 +55,11 @@ def take_first_item(variants) -> Optional[str]:
     if not variants["item"]:
         return None
     return variants["item"][0]
+
+
+def take_first_non_empty_item(variants) -> Optional[str]:
+    """Take the first non-empty item variant and normalize."""
+    for item in variants["item"]:
+        if item:
+            return item
+    return None
