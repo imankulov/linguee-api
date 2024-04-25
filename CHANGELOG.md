@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## UNRELEASED
+
+- Added support for Python 3.11 and 3.12.
+- Updated Dockerfile to use Python 3.12.
+- Added docker-build.yml action.
+
 ## 2.6.1 (2024-04-25)
 
 - Updated all dependencies.
