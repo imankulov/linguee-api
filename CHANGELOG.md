@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## UNRELEASED
+## 2.6.3 (2024-08-14)
 
 - Updated pydantic to the latest 1.x version to address incompatibility with python 3.12.4. Ref: https://github.com/pydantic/pydantic/issues/9637
 
