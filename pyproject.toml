@@ -29,7 +29,7 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.8"
 fastapi = "^0.109.2"
-pydantic = "^1.10.8"
+pydantic = "^1"
 xextract = "^0.1.8"
 httpx = "^0.24.1"
 uvicorn = "^0.22.0"
