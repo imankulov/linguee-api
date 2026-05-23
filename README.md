@@ -1,5 +1,7 @@
 # Linguee API
 
+> **This project is archived and read-only.** It is no longer maintained, and no new issues or pull requests will be accepted.
+
 [Linguee](https://linguee.com) provides excellent dictionary and translation memory service. Unfortunately, there is no way you can get automated access to it. Linguee API fixes the problem. It acts as a proxy and converts their HTML responses to easy-to-use JSON API.
 
 ## API endpoints
